@@ -13,6 +13,7 @@ class LoginController extends Controller{
     }
     //后台展示页面
     public function index(){
+
         return view('login/index');
     }
     //嵌套后台展示页面

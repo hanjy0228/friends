@@ -473,7 +473,11 @@ class SelfController extends Controller
         }
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
-        $comm = DB::select("select * from comment inner join user on comment.u_id = user.id") ;
+        $id=$user->id;
+//        $id=$request->input('id');
+//        $comm = DB::select("select * from comment inner join user on comment.u_id = user.id") ;
+        $comm = DB::select("select * from comment where comment.p_id =  $id") ;
+//                print_r($comm);die;
         return view('index.comment',['data'=>$user,'comm'=>$comm]);
     }
     public function niming (Request $request)

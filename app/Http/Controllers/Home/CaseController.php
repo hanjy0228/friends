@@ -9,6 +9,10 @@ class CaseController extends Controller{
      * 幸福案例
      */
     public function Case(Request $request){
+        if(empty($request->session()->get('user')))
+        {
+            echo "<script>location.href='/login'</script>";
+        }
         $data=DB::table('story')->get();
         //print_r($data[0]->title);die;
         return view('home.case.case',['list'=>$data]);
@@ -20,13 +24,21 @@ class CaseController extends Controller{
         //print_r($data->title);die;
         return view('home.case.case_list',['list'=>$data]);
     }
-    public function riji()
+    public function riji(Request $request)
     {
+        if(empty($request->session()->get('user')))
+        {
+            echo "<script>location.href='/login'</script>";
+        }
         $res = DB::select("select * from riji inner join user on riji.u_id = user.id where riji.state=1");
         return view('home.case.riji',['data'=>$res]);
     }
-    public function active()
+    public function active(Request $request)
     {
+        if(empty($request->session()->get('user')))
+        {
+            echo "<script>location.href='/login'</script>";
+        }
         return view('home.case.active');
     }
 

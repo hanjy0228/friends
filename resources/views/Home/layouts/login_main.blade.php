@@ -202,11 +202,11 @@
             //发表心情
             $.ajax({
                 type: "POST",
-                url: 'content_sub',
+                url: '/index/content_sub',
                 data: {a:"saveweibo", content:content, r:get_rndnum(8)},
                 success: function(data) {
                     alert(data);
-                    window.location.href='.'
+                    window.location.href='/index/comment'
                 }
             });
 
@@ -254,24 +254,7 @@
             <div class="clear"></div>
         </div>
     </div>
-    <div class="oe_nav">
-        <div class="oe_navcon">
-            <div class="logo">
-                <a href="index.php"><img class="logo" src="../../../../img/79afd9d32145a106.png"  alt="牵手一生婚恋" /></a><img class="line" src="../../../../img/line.png" alt="" />
-                <div class="clear"></div>
-            </div>
-            <div class="menu">
-                <ul>
-                    <li><a href=".">首页</a></li>
-                    <li><a href="riji">日记</a></li>
-                    <li><a href="/index/self">个人中心</a></li>
-                    <li><a href="case">幸福案例</a></li>
-                    <li><a href="active">不见不散</a></li>
-                </ul>
-            </div>
-            <div class="clear"></div>
-        </div>
-    </div>
+
 </div>
 <div style="height:140px;"></div>
 

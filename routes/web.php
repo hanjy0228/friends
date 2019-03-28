@@ -22,7 +22,7 @@ Route::group(['namespace'=>'home'],function (){
     Route::any('show','LoginController@Show');
     Route::any('si','LoginController@Si');
     Route::any('zan','LoginController@Zan');
-//    Route::any('/content_sub','LoginController@content_sub');
+    Route::any('content_sub','LoginController@content_sub');
     Route::any('party','PartyController@Party');
     Route::any('diary','DiaryController@Diary');
     Route::any('case','CaseController@Case');

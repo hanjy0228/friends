@@ -45,7 +45,10 @@ class LoginController extends Controller{
      * 首页
      */
     public function Index(Request $request){
-
+        if(empty($request->session()->get('user')))
+        {
+            echo "<script>location.href='/login'</script>";
+        }
         $user=$request->session()->get('user');
         $sex=DB::table('user')->where('user',$user)->value('sex');
         //推荐
@@ -111,28 +114,23 @@ class LoginController extends Controller{
 //        print_r(user.id);die;
         return view('home.index.show',['data'=>$data,'comm'=>$comm]);
     }
-
     public function content_sub(Request $request)
     {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        $id=$request->input('id');
-        $request->session()->put('id',$id);
-//        $value = $request->session()->get('user');
-
-        $user = DB::table('user')->where('id',$id)->first();
-
-        $content = $request->post('content');
-        //print_r($content);die;
-        $time = date('Y-m-d H:i:s');
-        $res = DB::table('comment')->insert(['content'=>$content,'p_id' =>$id,'img'=>$user->img,'nichen'=>$user->nichen, 'u_id'=>$user->id,'state'=>1,'time'=>$time]);
-        if($res)
-        {
-            return "发表成功" ;
-        }else{
-            return "发表失败";
+        if ($request->isMethod('post')) {
+            $id = $request->session()->get('id');
+            $user = $request->session()->get('user');
+            $content = $request->post('content');
+            if (empty($content)) {
+                echo "<script>alert('不能为空');location.href='show';</script>";
+            }
+            $time = date('Y-m-d H:i:s');
+            $u_id = DB::table('user')->where('user', $user)->value('id');
+            $res = DB::table('comment')->insert(['content' => $content, 'p_id' => $id, 'u_id' => $u_id, 'time' => $time]);
+            if ($res) {
+                return "发表成功";
+            } else {
+                return "發表失敗";
+            }
         }
     }
 
