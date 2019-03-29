@@ -50,10 +50,11 @@ class LoginController extends Controller{
             echo "<script>location.href='/login'</script>";
         }
         $user=$request->session()->get('user');
+        $id=DB::table('user')->where('user',$user)->value('id');
         $sex=DB::table('user')->where('user',$user)->value('sex');
         //推荐
         if($sex==1){
-            $data=DB::table('user')->where('sex',2)->get();
+            $data=DB::select("select * from user where user.sex=2 and user.intor=(select need from user where user.id=$id)") ;
         }else{
             $data=DB::table('user')->where('sex',1)->get();
         }

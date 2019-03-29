@@ -211,19 +211,7 @@
             });
 
         }
-//        function obj_zan(content_id) {
-//            //点赞
-//            $.ajax({
-//                type: "POST",
-//                url: 'zan',
-//                data: {a:"saveweibo", r:get_rndnum(8)},
-//                success: function(data) {
-////                    alert(data);
-////                    window.location.href='.'
-//                }
-//            });
-//
-//        }
+
         //心情文本框
         function obj_del_wbcontent(content_id) {
             var content = $("#"+content_id).val();
