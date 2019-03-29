@@ -21,7 +21,12 @@
                 <dd class="text">
                    {{$v->content}}
                 </dd>
-
+                <dd>  @if($v->state==0)
+                        未查看
+                    @else
+                        已查看
+                    @endif</dd>
+                <dd><a href="/index/see_comment?id={{$v->id}}">查看</a></dd>
 
             </dl>
         @endforeach

@@ -21,12 +21,37 @@
 </script>
 
 <div class="oe_newusrer">
+    <div class="inform">
+        @foreach($message_flag as $k => $v)
+
+            @if($v->state=0)
+            您有新的私信
+                @else
+                @endif
+        @endforeach
+            @foreach($zan_flag as $k => $v)
+
+                @if($v->state=0)
+                    您有新的点赞
+                @else
+                @endif
+            @endforeach
+            @foreach($comment_flag as $k => $v)
+
+                @if($v->state=0)
+                    您有新的评论
+                @else
+                @endif
+            @endforeach
+
+        {{--{{$zan_flag}}&&<p>您有新点赞</p>--}}
+        {{--{{$comment_flag}}&&<p>您有新评论</p>--}}
+    </div>
     <div class="index_search">
         <em class="dian"></em>
         <b class="text">快速查找</b>
         <form name="" id="search_normal" method="post" action="sou">
             {{ csrf_field() }}
-
             <div class="oes0_searchcon">
                 <div class="select">
                     <i class="jiao"></i>

@@ -128,6 +128,37 @@ class SelfController extends Controller
 
     }
 
+    public function see_zan(Request $request)
+    {
+        if(empty($request->session()->get('user')))
+        {
+            echo "<script>location.href='/login'</script>";
+        }
+        $id = $request->get('id');
+        $value = $request->session()->get('user');
+        $user = DB::table('user')->where('user',$value)->first();
+        DB::table('zan')->where('id', $id)->update(['state' => 1]);
+        $res = DB::table('zan')->where('zan.id', $id)->join('user', 'zan.u_id', '=', 'user.id')
+            ->select('zan.*', 'user.nichen')->get();
+        return view('index.see_zan', ['data' => $res,'datas'=>$user]);
+
+    }
+    public function see_comment(Request $request)
+    {
+        if(empty($request->session()->get('user')))
+        {
+            echo "<script>location.href='/login'</script>";
+        }
+        $id = $request->get('id');
+        $value = $request->session()->get('user');
+        $user = DB::table('user')->where('user',$value)->first();
+        DB::table('comment')->where('id', $id)->update(['state' => 1]);
+        $res = DB::table('comment')->where('comment.id', $id)->join('user', 'comment.u_id', '=', 'user.id')
+            ->select('comment.*', 'user.nichen')->get();
+        return view('index.see_comment', ['data' => $res,'datas'=>$user]);
+
+    }
+
     //已经发送的私信
     public function self_get_message(Request $request)
     {
@@ -491,6 +522,8 @@ class SelfController extends Controller
         $res = DB::select("select * from zan where zan.u_id =  $user->id") ;
         return view('index.niming',['data'=>$res,'datas'=>$user]);
     }
+
+
     public function content_sub(Request $request)
     {
         if(empty($request->session()->get('user')))

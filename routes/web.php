@@ -37,6 +37,7 @@ Route::group(['namespace'=>'index','prefix'=>'index'],function (){
     Route::any('/self_content','SelfController@self_content');
     Route::any('/self_content_upd','SelfController@self_content_upd');
     Route::any('/self_message','SelfController@self_message');
+    Route::any('/see_comment','SelfController@see_comment');
     Route::any('/see_message','SelfController@see_message');
     Route::any('/see_get_message','SelfController@see_get_message');
     Route::any('/self_get_message','SelfController@self_get_message');
@@ -58,6 +59,7 @@ Route::group(['namespace'=>'index','prefix'=>'index'],function (){
     Route::any('/comment','SelfController@comment');
     Route::any('/content_sub','SelfController@content_sub');
     Route::any('/niming','SelfController@niming');
+    Route::any('/see_zan','SelfController@See_zan');
 
 });
 Route::any('admin/login/login','Admin\Login\LoginController@login');

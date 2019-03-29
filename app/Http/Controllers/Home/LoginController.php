@@ -52,16 +52,23 @@ class LoginController extends Controller{
         $user=$request->session()->get('user');
         $id=DB::table('user')->where('user',$user)->value('id');
         $sex=DB::table('user')->where('user',$user)->value('sex');
+        $message_flag=DB::select("select * from self_message where self_message.get_id=$id") ;
+        $comment_flag=DB::select("select * from comment where comment.u_id=$id") ;
+        $zan_flag=DB::select("select * from zan where zan.u_id=$id") ;
+
         //推荐
         if($sex==1){
             $data=DB::select("select * from user where user.sex=2 and user.intor=(select need from user where user.id=$id)") ;
         }else{
-            $data=DB::table('user')->where('sex',1)->get();
+            $data=DB::select("select * from user where user.sex=1 and user.intor=(select need from user where user.id=$id)") ;
         }
         //成功案例
         $data1=DB::table('story')->get();
-        return view('home.index.index',['list'=>$data,'arr'=>$data1]);
+//        print_r($message_flag);die();
+        return view('home.index.index',['list'=>$data,'zan_flag'=>$zan_flag,'arr'=>$data1,'message_flag'=>$message_flag,'comment_flag'=>$comment_flag]);
     }
+
+
     //详情内容
     public function Case_list(Request $request){
         $id=$request->input('id');
@@ -193,6 +200,8 @@ class LoginController extends Controller{
 
         }
     }
+
+
 
 
 }

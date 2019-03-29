@@ -141,7 +141,14 @@
             @foreach($data as $k =>$v)
             <tr>
                 <td>{{$v->p_nichen}}给您点赞了</td>
+                <td>  @if($v->state==0)
+                        未查看
+                    @else
+                        已查看
+                    @endif</td>
+                <td><a href="/index/see_zan?id={{$v->id}}">查看</a></td>
             </tr>
+
                 @endforeach
         </table>
 
