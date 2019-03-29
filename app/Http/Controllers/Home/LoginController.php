@@ -157,23 +157,41 @@ class LoginController extends Controller{
     }
     //点赞
     public function Zan(Request $request){
-        $id=$request->input('id');
-        //当前时间
-        $d_time=date('Y-m-d H:i:s');
-        //
-        $z_time=date('Y-m-d');
-        $z_time=strtotime($z_time);
-        $zan=DB::table('user')->where('id',$id)->value('zan');
-        //
-        $time=DB::table('user')->where('id',$id)->value('z_time');
-        $time=strtotime($time);
-        $zan=$zan+1;
-        if($time<$z_time){
-            $res=DB::table('user')->where('id',$id)->update(['zan'=>$zan]);
-            DB::table('user')->where('id',$id)->update(['z_time'=>$d_time]);
-            return json_encode($zan);
-        }else{
-            return false;
+//        $id=$request->input('id');
+//        $d_time=date('Y-m-d H:i:s');
+//        $z_time=date('Y-m-d');
+//        $z_time=strtotime($z_time);
+//        $zan=DB::table('user')->where('id',$id)->value('zan');
+//        $time=DB::table('user')->where('id',$id)->value('z_time');
+//        $time=strtotime($time);
+//        $zan=$zan+1;
+//        if($time<$z_time){
+//            $res=DB::table('user')->where('id',$id)->update(['zan'=>$zan]);
+//            DB::table('user')->where('id',$id)->update(['z_time'=>$d_time]);
+//            return json_encode($zan);
+//        }else{
+//            return false;
+//        }
+        if ($request->isMethod('post')) {
+            $id = $request->session()->get('id');
+            $user = $request->session()->get('user');
+            $u_id = DB::table('user')->where('user', $user)->value('id');
+            $zaned=DB::table('zan')->where('user',$user)->value('u_id');
+            $zan=DB::table('user')->where('id',$id)->value('zan');
+            $zan=$zan+1;
+            $p_nicheng= DB::table('user')->where('p_nicheng', $user)->value('id');
+            if($zaned){
+                return "您已经点赞过，请勿重复点赞";
+            } else {
+                $resZan = DB::table('zan')->insert([ 'p_id' => $id, 'u_id' => $u_id,'p_nicheng'=>$p_nicheng]);
+                $resUser=DB::table('user')->where('id',$id)->update(['zan'=>$zan]);
+                if ($resZan&&$resUser) {
+                    return "发表成功";
+                } else {
+                    return "發表失敗";
+                }
+            }
+
         }
     }
 

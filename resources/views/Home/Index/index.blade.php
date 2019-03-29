@@ -248,7 +248,7 @@
                             {{$list[$k]->money}}</p>
                         <p class="btn">
                              <h2 id="{{$v->id}}">&nbsp;&nbsp;{{$v->zan}}</h2>
-                        <button class="zan" ids="{{$v->id}}">点赞</button>
+                        <button class="zan" ids="{{$v->id}}"  onclick="obj_zan(&#39;mood_content&#39;);">点赞</button>
 
                             </p>
                     </dd>
@@ -265,13 +265,13 @@
 <script src="../../../js/jquery-3.3.1.js"></script>
 <script>
 
-    $('.zan').click(function () {
-        var id=$(this).attr('ids');
-        $.post("zan", {id:id},
-            function(data){
-                $("#"+id).html("&nbsp;&nbsp;"+data);
-            });
-    });
+//    $('.zan').click(function () {
+//        var id=$(this).attr('ids');
+//        $.post("zan", {id:id},
+//            function(data){
+//                $("#"+id).html("&nbsp;&nbsp;"+data);
+//            });
+//    });
 
 </script>
 
