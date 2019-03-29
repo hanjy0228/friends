@@ -488,8 +488,7 @@ class SelfController extends Controller
         }
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
-        $res = DB::table('niming')->where('id',$user->id)->get();
-
+        $res = DB::select("select * from zan where zan.u_id =  $user->id") ;
         return view('index.niming',['data'=>$res,'datas'=>$user]);
     }
     public function content_sub(Request $request)

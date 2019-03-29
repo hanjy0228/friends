@@ -173,22 +173,20 @@ class LoginController extends Controller{
 //            return false;
 //        }
         if ($request->isMethod('post')) {
-            $id = $request->session()->get('id');
+            $id=$request->input('id');
             $user = $request->session()->get('user');
             $u_id = DB::table('user')->where('user', $user)->value('id');
-            $zaned=DB::table('zan')->where('user',$user)->value('u_id');
             $zan=DB::table('user')->where('id',$id)->value('zan');
             $zan=$zan+1;
-            $p_nicheng= DB::table('user')->where('p_nicheng', $user)->value('id');
+            $p_nichen= DB::table('user')->where('user', $user)->value('nichen');
+            $zaned=DB::select("select u_id from zan where zan.u_id =$u_id and zan.p_id=$id") ;
             if($zaned){
-                return "您已经点赞过，请勿重复点赞";
+                echo "<script>alert('您已经点赞过，请勿重复点赞');location.href='.'</script>";
             } else {
-                $resZan = DB::table('zan')->insert([ 'p_id' => $id, 'u_id' => $u_id,'p_nicheng'=>$p_nicheng]);
+                $resZan = DB::table('zan')->insert([ 'p_id' => $id, 'u_id' => $u_id,'p_nichen'=>$p_nichen]);
                 $resUser=DB::table('user')->where('id',$id)->update(['zan'=>$zan]);
                 if ($resZan&&$resUser) {
-                    return "发表成功";
-                } else {
-                    return "發表失敗";
+                    echo "<script>alert('点赞成功');location.href='.'</script>";
                 }
             }
 
