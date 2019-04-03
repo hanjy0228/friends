@@ -46,6 +46,15 @@
                     <label><font color="red">*</font> 年龄：</label>
                     <input type="text" name="age"/>
                 </div>
+                <div id="div_need" class="form_li">
+                    <label><font color="red">*</font> 择偶需求：</label>
+                    <input type="textarea" name="need"/>
+                </div>
+                <div id="div_intor" class="form_li">
+                    <label><font color="red">*</font> 自我评价：</label>
+                    <input type="textarea" name="intor"/>
+                </div>
+
             </div>
             <div class="form_li">
                 <div class="tijiao">

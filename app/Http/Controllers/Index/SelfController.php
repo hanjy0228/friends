@@ -31,6 +31,22 @@ class SelfController extends Controller
         return view('index.self', ['data' => $res]);
     }
 
+    public function edit_self(Request $request)
+    {
+
+        if(empty($request->session()->get('user')))
+        {
+            echo "<script>location.href='/login'</script>";
+        }
+        $value = $request->session()->get('user');
+
+        $user = DB::table('user')->where('user',$value)->first();
+        $res = DB::table('user')->where('id', $user->id)->first();
+        //var_dump($res);die ;
+
+        return view('index.edit_self', ['data' => $res]);
+    }
+
     //修改用户信息
     public function upd_user(Request $request)
     {

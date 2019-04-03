@@ -33,6 +33,7 @@ Route::group(['namespace'=>'home'],function (){
 });
 Route::group(['namespace'=>'index','prefix'=>'index'],function (){
     Route::any('/self','SelfController@self');
+    Route::any('/edit_self','SelfController@edit_self');
     Route::any('/upd_user','SelfController@upd_user');
     Route::any('/self_content','SelfController@self_content');
     Route::any('/self_content_upd','SelfController@self_content_upd');

@@ -590,6 +590,20 @@
                 return false;
             }
 
+            t = "need";
+            v = $("#"+t).val();
+            if(v=="") {
+                dmsg("请输入择偶要求", t);
+                return false;
+            }
+
+            t = "intor";
+            v = $("#"+t).val();
+            if(v=="") {
+                dmsg("请输入自我评价", t);
+                return false;
+            }
+
             //所在地区
             t = "provinceid";
             v = $("#"+t).val();
