@@ -23,21 +23,18 @@
 <div class="oe_newusrer">
     <div class="inform">
         @foreach($message_flag as $k => $v)
-
             @if($v->state=0)
             您有新的私信
                 @else
                 @endif
         @endforeach
             @foreach($zan_flag as $k => $v)
-
                 @if($v->state=0)
                     您有新的点赞
                 @else
                 @endif
             @endforeach
             @foreach($comment_flag as $k => $v)
-
                 @if($v->state=0)
                     您有新的评论
                 @else

@@ -358,14 +358,11 @@
 
                 </ul>
             </div>
-
             <div class="div_smallnav_content_hover">
-
-
                 <table class="table">
                     <tbody>
                         @foreach($data as $k => $v)
-                            <p>发件人:{{$v->nichen}}</p>
+                            <p><a href="/show?id={{$v->id}}" >发件人:{{$v->nichen}}</a></p>
                             <br>
                             <br>
                             <br>
@@ -375,17 +372,13 @@
                             <br>
                             <p style="float: right">时间{{$v->time}}</p>
                         @endforeach
-
                     </tbody></table>
             </div>
-
-
             <div class="clear"></div>
             <!--//div_smallnav_content_hover End-->
         </div>
         <div class="clear"></div>
         <!--//main_right End-->
-
         <div style="margin: 30px;"></div>
         <!--//right_kj End-->
 
