@@ -251,7 +251,10 @@
             <div class="oe_index_uL_head">
                 <dl>
                     <dt>
-                        <a href="/show?id={{$data->id}}"><img src="/uploads/{{$data->img}}" title="设置头像"></a>
+                        <a href="/show?id={{$data->id}}"><div align="center">
+                                <img class="thumbnail img-responsive" src="{{ $data -> avatar }}" width="300px" height="300px">
+                            </div>
+                            {{--<img src="/uploads/{{$data->avatar}}" title="设置头像"></a>--}}
 
 
 

@@ -48,36 +48,51 @@ class SelfController extends Controller
     }
 
     //修改用户信息
-    public function upd_user(Request $request)
+    public function upd_user(Request $request,ImageUpload $upload, $data)
     {
         if(empty($request->session()->get('user')))
         {
             echo "<script>location.href='/login'</script>";
         }
-        // echo 11 ;die ;
-        $study = $request->post('study');
-        $hu = $request->post('hu');
-        $maraystate = $request->post('maraystate');
-        $height = $request->post('height');
-        $profession = $request->post('profession');
-        $money = $request->post('money');
-        $id = $request->post('id');
-        if (!empty($file)) {
-            $file = $request->file('file');
-            $name = $file->getClientOriginalExtension();
-            $filename = md5($id) . '.' . $name;
-            $file->move('./uploads', $filename);
-            $res = DB::table('user')->where('id', $id)->update(['study' => $study, 'hu' => $hu, 'maraystate' => $maraystate, 'height' => $height, 'profession' => $profession, 'money' => $money, 'img' => $filename]);
-        } else {
-            $res = DB::table('user')->where('id', $id)->update(['study' => $study, 'hu' => $hu, 'maraystate' => $maraystate, 'height' => $height, 'profession' => $profession, 'money' => $money]);
+
+        $user = $request -> all();
+        // 处理上传图片保存并返回路径
+        if($request -> avatar){
+            $result = $upload ->save($request -> avatar,'avatar',$data ->id,362);
+            if($result){
+                $user['avatar'] = $result['path'];
+            }
         }
-
-
-        if ($res) {
+        // 执行更新
+        $data -> update($user);
+        if ($data) {
             echo "<script>alert('修改成功');location.href='/index/self'</script>";
-        } else {
-            echo "<script>alert('出错了');location.href='/index/self'</script>";
         }
+
+        // echo 11 ;die ;
+//        $study = $request->post('study');
+//        $hu = $request->post('hu');
+//        $maraystate = $request->post('maraystate');
+//        $height = $request->post('height');
+//        $profession = $request->post('profession');
+//        $money = $request->post('money');
+//        $id = $request->post('id');
+//        if (!empty($file)) {
+//            $file = $request->file('file');
+//            $name = $file->getClientOriginalExtension();
+//            $filename = md5($id) . '.' . $name;
+//            $file->move('./uploads', $filename);
+//            $res = DB::table('user')->where('id', $id)->update(['study' => $study, 'hu' => $hu, 'maraystate' => $maraystate, 'height' => $height, 'profession' => $profession, 'money' => $money, 'img' => $filename]);
+//        } else {
+//            $res = DB::table('user')->where('id', $id)->update(['study' => $study, 'hu' => $hu, 'maraystate' => $maraystate, 'height' => $height, 'profession' => $profession, 'money' => $money]);
+//        }
+//
+//
+//        if ($res) {
+//            echo "<script>alert('修改成功');location.href='/index/self'</script>";
+//        } else {
+//            echo "<script>alert('出错了');location.href='/index/self'</script>";
+//        }
 
     }
 
