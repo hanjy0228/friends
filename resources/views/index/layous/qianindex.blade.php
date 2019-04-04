@@ -252,7 +252,7 @@
                 <dl>
                     <dt>
 
-                            <img src="/uploads/{{$data->avatar}}" title="设置头像"></a>
+                            <img src="/uploads/{{$data->file}}" title="设置头像"></a>
 
 
 

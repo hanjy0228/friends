@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+//use Illuminate\Contracts\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Model\Login;
 class LoginController extends Controller{
@@ -14,6 +15,7 @@ class LoginController extends Controller{
             unset($data['_token']);
             $request->session()->put('user',$data['user']);
             $res=DB::table('user')->where(['user'=>$data['user'],'pass'=>$data['pass']])->first();
+//            print_r($res);die();
             if(empty($res)){
                 echo "<script>alert('登陆失败');location.href='login'</script>";
             }else{
