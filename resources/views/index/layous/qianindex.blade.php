@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0042)http://www.wzqsys.com/usercp.php?c=profile -->
 <html class="no-js" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta name="author" content="OEdev">
     <meta name="generator" content="OElove">
     <title>修改资料-牵手</title>
@@ -12,6 +11,9 @@
     </script>
     <script type="text/javascript" src="/index/js/jquery.min.js"></script>
     <link rel="stylesheet" href="/index/css/default.css">
+    <link rel="stylesheet" href="../../../../css/jdlogin.css" />
+    <link rel="stylesheet" href="../../../../css/style.css" />
+    <link href="../../../../css/sharebar.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/index/js/jquery.artDialog.source.js"></script>
     <script type="text/javascript" src="/index/js/iframeTools.js"></script>
     <script type="text/javascript" src="/index/js/public.js"></script>
@@ -44,123 +46,6 @@
                 }
             });
         });
-
-        //关注状态
-        function obj_listen_status(uid, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:"getlisten", halttype:"ajax", uid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var flag = json.flag;
-                        if (tipsid != '') {
-                            if (flag == '1') {
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'cancel', '"+tipsid+"');\">取消关注</a>");
-                            }
-                            else {
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                            }
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
-        //拉黑状态
-        function obj_black_status(uid, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:"getlisten", halttype:"ajax", uid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var flag = json.flag;
-                        if (tipsid != '') {
-                            if (flag == '2') {
-                                //已拉黑
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                            }
-                            else {
-                                //未拉黑
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'black', '"+tipsid+"');\">拉黑名单</a>");
-                            }
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
-        //操作好友 加关注、拉黑、取消
-        function obj_action_listen (uid, action, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:action, halttype:"ajax", fuid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var type = json.type;
-                        var flag = json.flag;
-                        var error = json.error;
-                        if (tipsid != '') {
-                            //加关注
-                            if (type == 'listen') {
-                                if (error.length==0) {
-                                    if (flag == '1') {
-                                        $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'cancel', '"+tipsid+"');\">取消关注</a>");
-                                    }
-                                }
-                                else {
-                                    alert(error);
-                                }
-                            }
-                            //取消关注
-                            if (type == 'cancel') {
-                                if (error.length==0) {
-                                    if (flag == '1') {
-                                        $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                                    }
-                                }
-                                else {
-                                    alert(error);
-                                }
-                            }
-                            //拉黑名单
-                            if (type == 'black') {
-                                if (error.length==0) {
-                                    if (flag == '1') {
-                                        $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                                    }
-                                }
-                                else {
-                                    alert(error);
-                                }
-                            }
-
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
         //发表心情
         function obj_public_mood(content_id) {
             var content = $("#"+content_id).val();
@@ -243,20 +128,47 @@
         });
     });
 </script>
-
-<div class="user_main">
+<div class="nav0">
+    <div class="oe_top">
+        <div class="oe_topcon">
+            <div class="left">欢迎来到牵手一生婚恋</div>
+            <div class="right drop">
+                <div class="login">
+                    <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="admin" class="areg">注册</a>
+                    <a  rel="nofollow" class="a_2" href="/logout"   class="areg">退出</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="oe_nav">
+        <div class="oe_navcon">
+            <div class="logo">
+                <a href="index.php"><img class="logo" src="../../../../img/79afd9d32145a106.png"  alt="牵手一生婚恋" /></a><img class="line" src="../../../../img/line.png" alt="" />
+                <div class="clear"></div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="/.">首页</a></li>
+                    <li><a href="/riji">日记</a></li>
+                    <li><a href="/index/self">个人中心</a></li>
+                    <li><a href="/case">幸福案例</a></li>
+                    <li><a href="/active">不见不散</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div style="height:160px;"></div>
+<div class="user_main" style="margin-top: -60px;">
     <div class="oe_bn"><span></span>会员中心 &gt;&gt; 我的资料</div>
     <div class="user_main_left">
         <div class="oe_index_uL_top">
             <div class="oe_index_uL_head">
                 <dl>
                     <dt>
-
-                            <img src="/uploads/{{$data->file}}" title="设置头像"></a>
-
-
-
-
+                            <img src="/uploads/{{$data->img}}" title="设置头像"></a>
                     </dt>
                     <dd>
                         <h2><img src="/index/img/f2fde8e7d8aa2a10.gif" border="0" class="">{{$data->nichen}}</h2>
@@ -265,7 +177,6 @@
                     <div class="clear"></div>
                 </dl>
                 <div class="clear"></div>
-
             </div>
             <div class="oe_uL_rz">
                 <div class="oe_uL_rz_name">
@@ -273,11 +184,8 @@
                     进行中
                     <a href="/index/upd_state">修改</a>
                 </div>
-
             </div>
-
             <div class="mu_profile">
-
                 <a href="/index/self" class="a_2">完善资料</a>
             </div>
         </div>
@@ -298,58 +206,14 @@
 
             </ul>
         </div>
-
-        <div class="u_photo">
-            <dl>
-                <dt>
-                    <a href="http://www.wzqsys.com/usercp.php?c=album&amp;a=upload"><span></span></a>
-                </dt>
-                <div class="clear"></div>
-            </dl>
-        </div>
     </div>
 
-
 @yield('content')
-
-
 
     <div class="user_footer" style="padding-bottom:30px;">
 
     </div>
     <!--//user_footer End-->
-    <script type="text/javascript">
-        //新信息
-        function obj_loading_count(type, tipsid) {
-            $.ajax({
-                type: "POST",
-                url: _ROOT_PATH + "usercp.php?c=popwin&a=count",
-                cache: false,
-                data: {type:type, r:get_rndnum(8)},
-                dataType: "json",
-                beforeSend: function(XMLHttpRequest) {
-                    XMLHttpRequest.setRequestHeader("request_type","ajax");
-                },
-                success: function(data) {
-                    var json = eval(data);
-                    var num = json.num;
-                    if (num > 0) {
-                        var html = "";
-                        html = html+"<font style='color:#51545B;'>(";
-                        if (num > 99) {
-                            html = html+"99";
-                        }
-                        else {
-                            html = html+num;
-                        }
-                        html = html+")</font>";
-                        $("#"+tipsid).html(html);
-                    }
-                },
-                error: function() {}
-            });
-        }
-    </script>
     <style>
         .popwin-box{
             position:fixed;
@@ -416,161 +280,14 @@
             float:right;width:330px;
         }
     </style>
-    <div class="popwin-box" style="display:none;">
-
-        <div class="zm_popwin_left">
-            <ul>
-                <li style="padding-left:20px;padding-right:10px;" class="zm_popwin_rightbor"><a href="http://www.wzqsys.com/usercp.php">会员中心</a></li>
-                <li style="padding-left:10px;padding-right:10px;" class="zm_popwin_rightbor"><img src="/index/img/popwin_avatar.gif"><a href="http://www.wzqsys.com/usercp.php?c=avatar">设置形象照</a></li>
-
-                <li style="padding-left:10px;padding-right:10px;">
-                    <a href="http://www.wzqsys.com/usercp.php?c=vip"><img title="VIP服务" src="/index/img/popwin_vip.png"></a>&nbsp;
-                    <a href="http://www.wzqsys.com/usercp.php?c=certify"><img title="诚信认证" src="/index/img/cid.png"></a>&nbsp;&nbsp;
-                    <a href="http://www.wzqsys.com/usercp.php?c=cond">修改择友条件</a>
-                </li>
-
-            </ul>
-            <div style="clear:both;"></div>
-        </div>
-        <!--//zm_popwin_left End-->
-
-        <div class="zm_popwin_right">
-
-            <div class="popwin-main" style="display:none;" id="popwin-main">
-                <div class="popwin-titlebar">
-                    <span class="popwin-title"></span>
-                    <div class="popwin-min" title="关闭消息"></div>
-                    <div class="clear"></div>
-                </div>
-                <div class="popwin-content" id="popwin-data">
-
-                </div>
-            </div>
-            <!--/popwin_main End-->
-
-            <input type="hidden" id="click_menu_value" value="">
-            <div class="popwin-menu">
-                <ul>
-                    <li onclick="obj_click_menu(&#39;msg&#39;, &#39;2&#39;, &#39;我的信件&#39;);">
-                        <div class="popwin-tx block"></div><img src="/index/img/popwin_letter.gif">信件<span
-                                id="popwinmsg"><script>obj_loading_count('msg', 'popwinmsg');</script></span>
-                    </li>
-
-                    <li onclick="obj_click_menu(&#39;hi&#39;, &#39;1&#39;, &#39;我的招呼&#39;);">
-                        <div class="popwin-tx block"></div><img src="/index/img/popwin_hi.gif">招呼<span id="popwinhi"><script>obj_loading_count('hi', 'popwinhi');</script></span>
-                    </li>
-
-                    <li onclick="obj_click_menu(&#39;gift&#39;, &#39;3&#39;, &#39;我的礼物&#39;);">
-                        <div class="popwin-tx block"></div><img src="/index/img/popwin_gift.gif">礼物<span id="popwingift"><script>obj_loading_count('gift', 'popwingift');</script></span>
-                    </li>
-                    <li onclick="obj_click_menu(&#39;sysmsg&#39;, &#39;1&#39;, &#39;我的消息&#39;);">
-                        <div class="popwin-tx block"></div><img src="/index/img/popwin_gg.gif">消息<span id="popwinsysmsg"><script>obj_loading_count('sysmsg', 'popwinsysmsg');</script></span>
-                    </li>
-                </ul>
-            </div>
-            <!--//popwin-menu End-->
-
-        </div>
-        <!--//zm_popwin_right End-->
-        <div style="clear"></div>
 
 
 
     </div>
-    <script type="text/javascript">
-        $(function() {
-            $(".popwin-tx").addClass("block");
-            //最小化
-            $(".popwin-min").click(function() {
-                $(".popwin-main").slideUp("slow");
-            });
-        });
-
-        //扑捉区域
-        function obj_click_menu(id, num, title) {
-            var _v = $("#click_menu_value").val();
-            //同一区域
-            if (_v == id) {
-                $(".popwin-title").html(title);
-                if ($("#popwin-main").css('display') == 'none') {
-                    $(".popwin-main").slideDown("slow");
-                    obj_popwin_data(id, num, "popwin-data");
-                }
-                else {
-                    $(".popwin-main").slideUp("slow");
-                }
-            }
-            //不同区域
-            else {
-                if ($("#popwin-main").css('display') == 'block') {
-                    $(".popwin-main").slideUp("slow");
-                }
-                $("#click_menu_value").val(id);
-                $(".popwin-title").html(title);
-                $(".popwin-main").slideDown("slow");
-                obj_popwin_data(id, num, "popwin-data");
-            }
-        }
-
-        //获取数据
-        function obj_popwin_data(type, num, tips) {
-            $("#"+tips).html("<div style='text-align:center;padding:10px;color:#999999;'>loading</div>");
-            $.ajax({
-                type: "POST",
-                url: _ROOT_PATH + "usercp.php?c=popwin",
-                cache: false,
-                data: {a:type, num:num, r:get_rndnum(8)},
-                dataType: "json",
-                beforeSend: function(XMLHttpRequest) {
-                    XMLHttpRequest.setRequestHeader("request_type","ajax");
-                },
-                success: function(data) {
-                    var json = eval(data);
-                    var result = json.result;
-                    $("#"+tips).html(result);
-                },
-                error: function() {}
-            });
-        }
-
-        //imbox
-        function obj_imbox() {
-            var tips = "popwin-data";
-            $.ajax({
-                type: "POST",
-                url: _ROOT_PATH + "usercp.php?c=popwin",
-                cache: false,
-                data: {r:get_rndnum(8)},
-                dataType: "json",
-                success: function(data) {
-                    var json = eval(data);
-                    var response = json.response;
-                    var result = json.result;
-                    var type = json.type;
-                    //存在数据
-                    if (response == 1) {
-                        var title = '';
-                        if (type == 'newvisit') {
-                            title = '谁访问了我';
-                        }
-                        $(".popwin-title").html(title);
-                        $("#"+tips).html(result);
-                        if ($("#popwin-main").css('display') == 'block') {
-                            $(".popwin-main").slideUp("slow");
-                        }
-                        $(".popwin-main").slideDown("slow");
-                    }
-                },
-                error: function() {}
-            });
-        }
-    </script>
 
     <script type="text/javascript">
         jQuery(".drop").slide({ type:"menu", titCell:".cin", targetCell:".sub",effect:"slideDown",delayTime:300,triggerTime:0,defaultPlay:false,returnDefault:true});
     </script>
-
-
     <script type="text/javascript">
         //基本资料
         function checkbase() {
@@ -666,4 +383,3 @@
 
 
     </script><div style="display: none; position: fixed; left: 0px; top: 0px; width: 100%; height: 100%; cursor: move; opacity: 0; background: rgb(255, 255, 255);"></div><div id="_my97DP" style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width: 186px; height: 198px;" src="/index/img/My97DatePicker.html" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>
-

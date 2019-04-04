@@ -13,7 +13,7 @@
                 <li class="tab_item"><a href="/index/upd_state?id={{$data->id}}">更改状态</a></li>
             </ul>
         </div>
-        <div class="div_smallnav_content_hover basicdata">
+        <div class="div_smallnav_content_hover basicdata" style="height: 472px;">
             <!--基本资料 Begin-->
             <form name="myform" id="myform" action="/index/upd_user" method="post" enctype="multipart/form-data">
                 <table cellpadding="0" cellspacing="0" border="0" width="98%" class="user-table table-margin lh35">

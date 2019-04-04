@@ -10,6 +10,9 @@
     <script type="text/javascript">
         var _ROOT_PATH = "/";
     </script>
+    <link rel="stylesheet" href="/index/css/default.css">
+    <link rel="stylesheet" href="../../../../css/jdlogin.css" />
+    <link rel="stylesheet" href="../../../../css/style.css" />
     <script type="text/javascript" src="/index/js/jquery.min.js"></script>
     <link rel="stylesheet" href="/index/css/default.css">
     <script type="text/javascript" src="/index/js/jquery.artDialog.source.js"></script>
@@ -283,7 +286,38 @@
         });
     });
 </script>
-
+<div class="nav0">
+    <div class="oe_top">
+        <div class="oe_topcon">
+            <div class="left">欢迎来到牵手一生婚恋</div>
+            <div class="right drop">
+                <div class="login">
+                    <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="admin" class="areg">注册</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="oe_nav">
+        <div class="oe_navcon">
+            <div class="logo">
+                <a href="index.php"><img class="logo" src="../../../../img/79afd9d32145a106.png"  alt="牵手一生婚恋" /></a><img class="line" src="../../../../img/line.png" alt="" />
+                <div class="clear"></div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="/.">首页</a></li>
+                    <li><a href="/riji">日记</a></li>
+                    <li><a href="/index/self">个人中心</a></li>
+                    <li><a href="/case">幸福案例</a></li>
+                    <li><a href="/active">不见不散</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div style="height:160px;"></div>
 <div class="user_main">
     <div class="oe_bn"><span></span>会员中心 &gt;&gt; 我的资料</div>
     <div class="user_main_left">
@@ -358,7 +392,7 @@
                     <li class="tab_item current"><a href="/index/upd_state">更改状态</a></li>
                 </ul>
             </div>
-            <div class="div_smallnav_content_hover">
+            <div class="div_smallnav_content_hover" style="height: 472px;">
 
 
 

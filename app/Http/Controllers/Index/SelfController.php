@@ -257,7 +257,7 @@ class SelfController extends Controller
         $data['title'] = $request->post('title');
         $data['state'] = $request->post('state');
         $data['content'] = $request->post('content');
-        $data['time'] = date('Y-m-d H:i:s');
+        $data['time'] = date('Y-m-d');
         $res = DB::table('riji')->where('title', $data['title'])->select('id')->get()->toArray();
 
         if (empty($res)) {
@@ -550,7 +550,8 @@ class SelfController extends Controller
 
        $content = $request->post('content');
         //print_r($content);die;
-        $time = date('Y-m-d H:i:s');
+        $time = date('Y-m-d');
+
         $res = DB::table('comment')->insert(['content'=>$content,'u_id'=>$user->id,'state'=>1,'time'=>$time]);
         if($res)
         {

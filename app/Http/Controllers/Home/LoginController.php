@@ -24,13 +24,18 @@ class LoginController extends Controller{
         }
         return view('home.login.login');
     }
+    public function Logout(Request $request){
+        $request->session()->flush();
+        echo "<script>alert('成功退出');location.href='login'</script>";
+        return view('home.login.logout');
+    }
 
     /*
      * 注册
      */
     public function Admin(Request $request){
         if($request->isMethod('post')){
-            $files=$request->file("file");
+            $files=$request->file("img");
             if($files){
                 $oragnalName=$files->getClientOriginalName();
                 $ext=$files->getClientOriginalExtension();
@@ -115,10 +120,6 @@ class LoginController extends Controller{
             $tj3 = "1=1";
             $tj4 = "1=1";
 
-            if(!empty($data['sex']))
-            {
-                $tj1 = "sex = ".$data['sex'];
-            }
             if(!empty($data['maraystate']))
             {
                 $tj2 = "maraystate = ".$data['maraystate'];
@@ -133,7 +134,7 @@ class LoginController extends Controller{
                 $tj4 = "height >=". $data['height']." and height <=".$data['height1'];
             }
 
-                $data=DB::select("select * from user where $tj1 and $tj2 and $tj3 and $tj4");
+                $data=DB::select("select * from user where $tj2 and $tj3 and $tj4");
 
             //成功案例
             $data1=DB::table('story')->get();
@@ -159,7 +160,7 @@ class LoginController extends Controller{
             if (empty($content)) {
                 echo "<script>alert('不能为空');location.href='show';</script>";
             }
-            $time = date('Y-m-d H:i:s');
+            $time = date('Y-m-d ');
             $u_id = DB::table('user')->where('user', $user)->value('id');
             $res = DB::table('comment')->insert(['content' => $content, 'p_id' => $id, 'u_id' => $u_id, 'time' => $time]);
             if ($res) {
@@ -180,7 +181,8 @@ class LoginController extends Controller{
             if(empty($content)){
                 echo "<script>alert('不能为空');location.href='si';</script>";
             }
-            $time=date('Y-m-d H:i:s');
+            $time=date('Y-m-d');
+            print_r($time);die();
             $u_id=DB::table('user')->where('user',$user)->value('id');
             $res=DB::table('self_message')->insert(['content'=>$content,'to_id'=>$id,'get_id'=>$u_id,'time'=>$time]);
             if($res){
@@ -194,7 +196,7 @@ class LoginController extends Controller{
     //点赞
     public function Zan(Request $request){
 //        $id=$request->input('id');
-//        $d_time=date('Y-m-d H:i:s');
+//        $d_time=date('Y-m-d ');
 //        $z_time=date('Y-m-d');
 //        $z_time=strtotime($z_time);
 //        $zan=DB::table('user')->where('id',$id)->value('zan');

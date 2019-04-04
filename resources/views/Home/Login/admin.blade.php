@@ -22,7 +22,7 @@
                             <div class="panel-body">
                                 <form class="form-horizontal" role="form" method="POST" action="" enctype="multipart/form-data">
                                     {{ csrf_field() }}
-                                    <input type="file" id="file" name="file">
+                                    <input type="file" id="img" name="img">
                                     <div class="form-group">
                                         <div class="col-md-8 col-md-offset-4">
                                             <button type="submit" class="btn btn-primary">

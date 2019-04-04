@@ -351,7 +351,7 @@
 
     <!--//user_main_left End-->
 
-        <div class="main_right">
+        <div class="main_right" style="height: 472px;">
 
             <div class="oe_tab_nv">
                 <ul>

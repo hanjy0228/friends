@@ -50,27 +50,6 @@
         <form name="" id="search_normal" method="post" action="sou">
             {{ csrf_field() }}
             <div class="oes0_searchcon">
-                <div class="select">
-                    <i class="jiao"></i>
-                    <span id="s_sex_text">
-        		  性别
-		          </span>
-                    <select name="sex" id="s_sex" f="but_change_sel" data-tid="s_sex_text" />
-                    <option value="2">女会员</option>
-                    <option value="1">男会员</option>
-                    </select>
-                </div>
-                <div class="select">
-                    <i class="jiao"></i>
-                    <span id="s_marry_text">
-            		  婚况
-		          </span>
-                    <select name="maraystate" id="s_marry" f="but_change_sel" data-tid="s_marry_text">
-                        <option value="1">未婚</option>
-                        <option value="2">已婚</option>
-                        <option value="3">离异</option>
-                    </select>
-                </div>
                 <div class="selectarea">
                     <i class="jiao"></i>
                     <span id="s_age_text" f="but_cond_multi_sel" data-box="s_age_box">
@@ -83,6 +62,17 @@
                         <select name='age1' id='s_eage'><option value=''>不限</option><option value='18'>18</option><option value='19'>19</option><option value='20'>20</option><option value='21'>21</option><option value='22'>22</option><option value='23'>23</option><option value='24'>24</option><option value='25'>25</option><option value='26'>26</option><option value='27'>27</option><option value='28'>28</option><option value='29'>29</option><option value='30'>30</option><option value='31'>31</option><option value='32'>32</option><option value='33'>33</option><option value='34'>34</option><option value='35'>35</option><option value='36'>36</option><option value='37'>37</option><option value='38'>38</option><option value='39'>39</option><option value='40'>40</option><option value='41'>41</option><option value='42'>42</option><option value='43'>43</option><option value='44'>44</option><option value='45'>45</option><option value='46'>46</option><option value='47'>47</option><option value='48'>48</option><option value='49'>49</option><option value='50'>50</option><option value='51'>51</option><option value='52'>52</option><option value='53'>53</option><option value='54'>54</option><option value='55'>55</option><option value='56'>56</option><option value='57'>57</option><option value='58'>58</option><option value='59'>59</option><option value='60'>60</option></select>
                         <p><label f="but_cond_multi_confirm" data-id1="s_sage" data-id2="s_eage" data-tid="s_age_text" data-tips="年龄" data-box="s_age_box">确定</label></p>
                     </div>
+                </div>
+                <div class="select">
+                    <i class="jiao"></i>
+                    <span id="s_marry_text">
+            		  婚况
+		          </span>
+                    <select name="maraystate" id="s_marry" f="but_change_sel" data-tid="s_marry_text">
+                        <option value="1">未婚</option>
+                        <option value="2">已婚</option>
+                        <option value="3">离异</option>
+                    </select>
                 </div>
                 <div class="selectarea">
                     <i class="jiao"></i>
@@ -311,26 +301,25 @@
             <span></span>
             <img src="../../../../img/p_6.png" />
         </div>
-        @foreach($arr as $k=>$v)
-        <div class="bd">
-
-            <dl class="dl_1 nLi  on ">
-                <dt><a href="case_list?id={{$arr[$k]->id}}"><img src="../../../uploads/{{$arr[$k]->img}}" /></a></dt>
-                <dd class="sub" >
-                    <p class="p_1"></p>
-                    <div>
-                        <h3><a href="case_list?id={{$arr[$k]->id}}" target="_blank">{{$arr[$k]->title}}</a></h3>
-                        <p class="p_2"><a href="case_list?id={{$arr[$k]->id}}" target="_blank" rel="nofollow">查看详情</a></p>
-                    </div>
-                </dd>
-            </dl>
-
-            <div class="clear"></div>
-        </div>
-        @endforeach
     </div>
     <div class="bottom"></div>
-</div>
+    <div>
+        <div class="oe_datalist" style="margin:50px;">
+            @foreach($arr as $k=>$v)
+                <dl class="dl_1 nLi  on " style="margin-left:70px;">
+                    <dt><a href="case_list?id={{$arr[$k]->id}}}" rel="nofollow"><img src="../../../uploads/{{$arr[$k]->img}}" /></a></dt>
+                    <dd class="sub" >
+                        <p class="p_1"></p>
+                        <div>
+                            <h3><a href="case_list?id={{$arr[$k]->id}}">{{$arr[$k]->title}}</a></h3>
+                            <p class="p_2"><a href="case_list?id={{$arr[$k]->id}}" rel="nofollow">查看详情</a></p>
+                        </div>
+                    </dd>
+                </dl>
+            @endforeach
+            <div class="clear"></div>
+        </div>
+    </div>
 <script type="text/javascript">
     jQuery(".oe_story").slide({ type:"menu", titCell:".nLi", targetCell:".sub",effect:"slideDown",delayTime:300,triggerTime:0});
 </script>

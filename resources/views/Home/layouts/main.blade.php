@@ -159,15 +159,9 @@
             <div class="right drop">
                 <div class="login">
                     <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="admin" class="areg">注册</a>
+                    <a  rel="nofollow" class="a_2" href="/logout"   class="areg">退出</a>
                 </div>
 
-                <dl class="cin">
-                    <dt><i></i>手机版</dt>
-                    <dd class="sub">
-                        <img src="index.php?c=scan&a=getqr&size=4&url=http%3A%2F%2Fwww.wzqsys.com%2Fwap.php&r=1550804912" />
-                        <p>扫一扫 手机交友</p>
-                    </dd>
-                </dl>
 
             </div>
             <div class="clear"></div>
@@ -200,10 +194,7 @@
 </div>
 <div class="oe_footer">
     <div class="oe_footercon">
-        <div class="er">
-            <h3>微信扫一扫</h3>
-            <img src="index.php?c=scan&a=getqr&size=4&url=http%3A%2F%2Fwww.wzqsys.com%2Fwap.php&r=1550802150" />
-        </div>
+
         <div class="fast">
             <h3>快速链接</h3>
             <ul>

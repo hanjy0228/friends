@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 Route::group(['namespace'=>'home'],function (){
     Route::any('','LoginController@Index');
+    Route::any('logout','LoginController@Logout');
     Route::any('upload', 'LoginController@upload');
     Route::any('login','LoginController@Login');
     Route::any('admin','LoginController@Admin');
