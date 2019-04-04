@@ -290,7 +290,6 @@ class SelfController extends Controller
         $res = DB::table('user')->where('id', $user->id)->first();
         return view('index.upd_state', ['data' => $res]);
     }
-
     public function upd_state_sub(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -309,7 +308,6 @@ class SelfController extends Controller
         }
 
     }
-
     //修改密码
     public function upd_pass(Request $request)
     {
@@ -323,7 +321,6 @@ class SelfController extends Controller
         $res = DB::table('user')->where('id', $user->id)->first();
         return view('index.upd_pass', ['data' => $res]);
     }
-
     public function upd_pass_sub(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -339,7 +336,6 @@ class SelfController extends Controller
             echo "<script>alert('原始密码不正确');location.href='/index/upd_pass'</script>";
         }
         if (empty($oldpass) || empty($newpass) || empty($confirmpass)) {
-
             echo "<script>alert('不能为空,请重新输入');location.href='/index/upd_pass'</script>";
         }
         if ($newpass != $confirmpass) {
@@ -351,9 +347,7 @@ class SelfController extends Controller
         } else {
             echo "<script>alert('出错了');location.href='/index/upd_pass'</script>";
         }
-
     }
-
     public function actives(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -367,7 +361,6 @@ class SelfController extends Controller
 
         return view('index.actives', ['data' => $res]);
     }
-
     //进入活动页面
     public function active_index(Request $request)
     {
@@ -386,7 +379,6 @@ class SelfController extends Controller
         }
         return view('index.active_index',['data'=>$res1]);
     }
-
     //进入活动
     public function char(Request $request)
     {
@@ -408,7 +400,6 @@ class SelfController extends Controller
             return 1;
         }
     }
-
     //活动报名
     public function char_list(Request $request)
     {
@@ -438,7 +429,6 @@ class SelfController extends Controller
 
         }
     }
-
     //选择缘分
     public function chos(Request $request)
     {
@@ -535,30 +525,6 @@ class SelfController extends Controller
         $user = DB::table('user')->where('user',$value)->first();
         $res = DB::select("select * from zan where zan.u_id =  $user->id") ;
         return view('index.niming',['data'=>$res,'datas'=>$user]);
-    }
-
-
-    public function content_sub(Request $request)
-    {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        $value = $request->session()->get('user');
-
-        $user = DB::table('user')->where('user',$value)->first();
-
-       $content = $request->post('content');
-        //print_r($content);die;
-        $time = date('Y-m-d');
-
-        $res = DB::table('comment')->insert(['content'=>$content,'u_id'=>$user->id,'state'=>1,'time'=>$time]);
-        if($res)
-        {
-            return "发表成功aha" ;
-        }else{
-            return "發表失敗";
-        }
     }
 
 }

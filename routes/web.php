@@ -65,19 +65,4 @@ Route::group(['namespace'=>'index','prefix'=>'index'],function (){
     Route::any('/see_zan','SelfController@See_zan');
 
 });
-Route::any('admin/login/login','Admin\Login\LoginController@login');
-Route::any('admin/login/index','Admin\Login\LoginController@index');
-Route::any('admin/login/welcome','Admin\Login\LoginController@welcome');
-Route::any('admin/login/loginok','Admin\Login\LoginController@loginok');
 
-Route::any('admin/user/userlist','Admin\User\UserController@userlist');
-Route::any('admin/user/userdel','Admin\User\UserController@userdel');
-Route::any('admin/user/del','Admin\User\UserController@del');
-
-Route::any('admin/comment/commentlist','Admin\Comment\CommentController@commentlist');
-Route::any('admin/comment/comdel','Admin\Comment\CommentController@comdel');
-
-Route::any('admin/story/storylist','Admin\Story\StoryController@storylist');
-Route::any('admin/story/storyadd','Admin\Story\StoryController@storyadd');
-Route::any('admin/story/storyaddok','Admin\Story\StoryController@storyaddok');
-Route::any('admin/story/storydel','Admin\Story\StoryController@storydel');

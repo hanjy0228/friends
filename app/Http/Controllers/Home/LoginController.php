@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-//use Illuminate\Contracts\Support\Facades\Storage;
+use Illuminate\Contracts\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Model\Login;
 class LoginController extends Controller{
@@ -29,10 +29,7 @@ class LoginController extends Controller{
         echo "<script>alert('成功退出');location.href='login'</script>";
         return view('home.login.logout');
     }
-
-    /*
-     * 注册
-     */
+    // 注册
     public function Admin(Request $request){
         if($request->isMethod('post')){
             $files=$request->file("img");
@@ -57,26 +54,7 @@ class LoginController extends Controller{
         }
         return view('home.login.admin');
     }
-
-//    public function upload(Request $request){
-//                if($request->isMethod('POST')){
-//                         $files=$request->file("file");
-//             if($files->isValid()){
-//                                 $oragnalName=$files->getClientOriginalName();
-//                $ext=$files->getClientOriginalExtension();
-//                 $type=$files->getClientMimeType();
-//                $realPath=$files->getRealPath();
-//                $file_new_name=date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
-//                 $bool=Storage::disk('uploads')->put($file_new_name,file_get_contents($realPath));
-//                var_dump($bool);exit;
-//             }
-//        }
-//        return view('home.login.admin');
-//     }
-
-    /*
-     * 首页
-     */
+    //首页
     public function Index(Request $request){
         if(empty($request->session()->get('user')))
         {
@@ -100,8 +78,6 @@ class LoginController extends Controller{
 //        print_r($message_flag);die();
         return view('home.index.index',['list'=>$data,'zan_flag'=>$zan_flag,'arr'=>$data1,'message_flag'=>$message_flag,'comment_flag'=>$comment_flag]);
     }
-
-
     //详情内容
     public function Case_list(Request $request){
         $id=$request->input('id');
@@ -170,7 +146,6 @@ class LoginController extends Controller{
             }
         }
     }
-
     //发私信
     public function Si(Request $request){
 
@@ -195,21 +170,6 @@ class LoginController extends Controller{
     }
     //点赞
     public function Zan(Request $request){
-//        $id=$request->input('id');
-//        $d_time=date('Y-m-d ');
-//        $z_time=date('Y-m-d');
-//        $z_time=strtotime($z_time);
-//        $zan=DB::table('user')->where('id',$id)->value('zan');
-//        $time=DB::table('user')->where('id',$id)->value('z_time');
-//        $time=strtotime($time);
-//        $zan=$zan+1;
-//        if($time<$z_time){
-//            $res=DB::table('user')->where('id',$id)->update(['zan'=>$zan]);
-//            DB::table('user')->where('id',$id)->update(['z_time'=>$d_time]);
-//            return json_encode($zan);
-//        }else{
-//            return false;
-//        }
         if ($request->isMethod('post')) {
             $id=$request->input('id');
             $user = $request->session()->get('user');
@@ -230,8 +190,4 @@ class LoginController extends Controller{
 
         }
     }
-
-
-
-
 }
