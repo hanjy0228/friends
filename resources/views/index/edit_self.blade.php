@@ -25,14 +25,7 @@
                         <td colspan="4" style="padding-bottom:10px;"><div class="item_title" style="width:100%"><p>基本资料</p><span class="shadow"></span></div></td>
                     </tr>
                     <tr>
-                        <div class="form-group">
-                            <label for="" class="avatar-label">用户头像</label>
-                            <input type="file" name="avatar">
-                            @if($data->avatar)
-                                <br>
-                                <img class="thumbnail img-responsive" src="{{ $data->avatar }}" width="200" />
-                            @endif
-                        </div>
+
                         <td class="lblock">上传照片<span class="f_red">*</span></td>
                         <td class="rblock">
                             <input type="file" name="file">

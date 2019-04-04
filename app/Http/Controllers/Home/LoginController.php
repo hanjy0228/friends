@@ -28,6 +28,16 @@ class LoginController extends Controller{
      */
     public function Admin(Request $request){
         if($request->isMethod('post')){
+            $files=$request->file("file");
+            if($files){
+                $oragnalName=$files->getClientOriginalName();
+                $ext=$files->getClientOriginalExtension();
+                $type=$files->getClientMimeType();
+                $realPath=$files->getRealPath();
+                $file_new_name=date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
+                $bool=Storage::disk('uploads')->put($file_new_name,file_get_contents($realPath));
+                var_dump($bool);exit;
+            }
             $data=$request->all();
             unset($data['_token']);
             unset($data['pass1']);
@@ -40,6 +50,22 @@ class LoginController extends Controller{
         }
         return view('home.login.admin');
     }
+
+//    public function upload(Request $request){
+//                if($request->isMethod('POST')){
+//                         $files=$request->file("file");
+//             if($files->isValid()){
+//                                 $oragnalName=$files->getClientOriginalName();
+//                $ext=$files->getClientOriginalExtension();
+//                 $type=$files->getClientMimeType();
+//                $realPath=$files->getRealPath();
+//                $file_new_name=date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
+//                 $bool=Storage::disk('uploads')->put($file_new_name,file_get_contents($realPath));
+//                var_dump($bool);exit;
+//             }
+//        }
+//        return view('home.login.admin');
+//     }
 
     /*
      * 首页
