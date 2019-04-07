@@ -12,6 +12,8 @@
     </script>
     <script type="text/javascript" src="/index/js/jquery.min.js"></script>
     <link rel="stylesheet" href="/index/css/default.css">
+    <link rel="stylesheet" href="../../../../css/jdlogin.css" />
+    <link rel="stylesheet" href="../../../../css/style.css" />
     <script type="text/javascript" src="/index/js/jquery.artDialog.source.js"></script>
     <script type="text/javascript" src="/index/js/iframeTools.js"></script>
     <script type="text/javascript" src="/index/js/public.js"></script>
@@ -64,7 +66,41 @@
         });
     });
 </script>
-
+<link rel="stylesheet" href="../../../../css/jdlogin.css" />
+<link rel="stylesheet" href="../../../../css/style.css" />
+<div class="nav0">
+    <div class="oe_top">
+        <div class="oe_topcon">
+            <div class="left">欢迎来到牵手一生婚恋</div>
+            <div class="right drop">
+                <div class="login">
+                    <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="admin" class="areg">注册</a>
+                    <a  rel="nofollow" class="a_2" href="/logout"   class="areg">退出</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="oe_nav">
+        <div class="oe_navcon">
+            <div class="logo">
+                <a href="index.php"><img class="logo" src="../../../../img/79afd9d32145a106.png"  alt="牵手一生婚恋" /></a><img class="line" src="../../../../img/line.png" alt="" />
+                <div class="clear"></div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="/.">首页</a></li>
+                    <li><a href="/riji">日记</a></li>
+                    <li><a href="/index/self">个人中心</a></li>
+                    <li><a href="/case">幸福案例</a></li>
+                    <li><a href="/active">不见不散</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div style="height:160px;"></div>
 <div class="user_main">
     <div class="oe_bn"><span></span>会员中心 &gt;&gt; 我的资料</div>
     <div class="user_main_left">
@@ -73,9 +109,6 @@
                 <dl>
                     <dt>
                         <a href="/show?id={{$datas->id}}"><img src="/uploads/{{$datas->img}}" title="设置头像"></a>
-
-
-
 
                     </dt>
                     <dd>
@@ -90,7 +123,11 @@
             <div class="oe_uL_rz">
                 <div class="oe_uL_rz_name">
                     征友状态：
+                    <?php if($datas->state== 1){ ?>
                     进行中
+                    <?php }else{ ?>
+                    关闭
+                    <?php }   ?>
                     <a href="/index/upd_state">修改</a>
                 </div>
 
@@ -110,22 +147,10 @@
                 <li>
                     <i class="ico_2"></i><a href="/index/comment">评论</a>
                 </li>
-                <li><i class="ico_7"></i><a href="/index/niming">点赞</a></li>
-                <li>
-                    <i class="ico_2"></i><a href="/index/active_index">不见不散</a>{{--<button id="peo">活动</button>--}}
-                </li>
+                <li><i class="ico_7"></i><a href="/index/zan">赞</a></li>
                 <li><i class="ico_7"></i><a href="/index/self_diary">日记</a></li>
 
             </ul>
-        </div>
-
-        <div class="u_photo">
-            <dl>
-                <dt>
-                    <a href="http://www.wzqsys.com/usercp.php?c=album&amp;a=upload"><span></span></a>
-                </dt>
-                <div class="clear"></div>
-            </dl>
         </div>
     </div>
 
@@ -135,26 +160,38 @@
     <div class="main_right" style="height: 472px;">
         <div class="oe_tab_nv">
         </div>
-        <div class="div_smallnav_content_hover basicdata">
-        <table>
-            收到的赞
-            @foreach($data as $k =>$v)
-            <tr>
-                <td>{{$v->p_nichen}}给您点赞了</td>
-                <td>  @if($v->state==0)
-                        未查看
-                    @else
-                        已查看
-                    @endif</td>
-                <td><a href="/index/see_zan?id={{$v->id}}">查看</a></td>
-            </tr>
 
-                @endforeach
-        </table>
+        <div class="div_smallnav_content_hover">
 
-            <!--基本资料 Begin-->
-            <!--基本资料 End-->
-
+            <div class="nav-tips">
+            </div>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td width="10%">状态</td>
+                    <td width="60%">点赞人</td>
+                    <td>查看</td>
+                </tr>
+                @if(!empty($data))
+                    @foreach($data as $k => $v)
+                        <tr>
+                            <td width="10%">
+                                @if($v->state==0)
+                                    未查看
+                                @else
+                                    已查看
+                                @endif
+                            </td>
+                            <td><a href="/show?id={{$v->p_id}}" >{{$v->p_nichen}}</a>给您点赞了</td>
+                            <td><a href="/index/see_zan?id={{$v->id}}">查看</a></td>
+                        </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="4" align="center" class="hback">对不起， 暂没有赞。</td>
+                    </tr>
+                @endif
+                </tbody></table>
         </div>
         <div class="clear"></div>
         <!--//div_smallnav_content_hover End-->

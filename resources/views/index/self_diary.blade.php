@@ -12,6 +12,8 @@
     </script>
     <script type="text/javascript" src="/index/js/jquery.min.js"></script>
     <link rel="stylesheet" href="/index/css/default.css">
+    <link rel="stylesheet" href="/css/jdlogin.css">
+    <link rel="stylesheet" href="/css/style.css">
     <script type="text/javascript" src="/index/js/jquery.artDialog.source.js"></script>
     <script type="text/javascript" src="/index/js/iframeTools.js"></script>
     <script type="text/javascript" src="/index/js/public.js"></script>
@@ -45,225 +47,6 @@
             });
         });
 
-        //关注状态
-        function obj_listen_status(uid, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:"getlisten", halttype:"ajax", uid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var flag = json.flag;
-                        if (tipsid != '') {
-                            if (flag == '1') {
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'cancel', '"+tipsid+"');\">取消关注</a>");
-                            }
-                            else {
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                            }
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
-        //拉黑状态
-        function obj_black_status(uid, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:"getlisten", halttype:"ajax", uid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var flag = json.flag;
-                        if (tipsid != '') {
-                            if (flag == '2') {
-                                //已拉黑
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                            }
-                            else {
-                                //未拉黑
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'black', '"+tipsid+"');\">拉黑名单</a>");
-                            }
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
-        //操作好友 加关注、拉黑、取消
-        function obj_action_listen (uid, action, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:action, halttype:"ajax", fuid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var type = json.type;
-                        var flag = json.flag;
-                        var error = json.error;
-                        if (tipsid != '') {
-                            //加关注
-                            if (type == 'listen') {
-                                if (error.length==0) {
-                                    if (flag == '1') {
-                                        $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'cancel', '"+tipsid+"');\">取消关注</a>");
-                                    }
-                                }
-                                else {
-                                    alert(error);
-                                }
-                            }
-                            //取消关注
-                            if (type == 'cancel') {
-                                if (error.length==0) {
-                                    if (flag == '1') {
-                                        $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                                    }
-                                }
-                                else {
-                                    alert(error);
-                                }
-                            }
-                            //拉黑名单
-                            if (type == 'black') {
-                                if (error.length==0) {
-                                    if (flag == '1') {
-                                        $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                                    }
-                                }
-                                else {
-                                    alert(error);
-                                }
-                            }
-
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
-        //发表心情
-        function obj_public_mood(content_id) {
-            var content = $("#"+content_id).val();
-            //心情内容
-            if (content == '' || content == '记录每一天的心情...') {
-                $.dialog({
-                    lock:true,
-                    title: '错误提示',
-                    content: '请填写心情内容',
-                    icon: 'error',
-                    button: [
-                        {
-                            name: '确定'
-                        }
-                    ]
-                });
-                return false;
-            }
-            if (strQuantity(content) > 500) {
-                $.dialog({
-                    lock:true,
-                    title: '错误提示',
-                    content: '心情内容不能大于500个字',
-                    icon: 'error',
-                    button: [
-                        {
-                            name: '确定'
-                        }
-                    ]
-                });
-                return false;
-            }
-
-            //发表心情
-            $.ajax({
-                type: "POST",
-                url: _ROOT_PATH + "usercp.php?c=weibo",
-                cache: false,
-                data: {a:"saveweibo", content:content, r:get_rndnum(8)},
-                dataType: "json",
-                success: function(data) {
-                    var json = eval(data);
-                    var response = json.response;
-                    var msg = json.msg;
-                    if (response == '1') {
-                        var tips = "";
-                        if (msg.length > 0) {
-                            tips = msg;
-                        }
-                        else {
-                            tips = "发表成功";
-                        }
-                        $.dialog({
-                            lock:true,
-                            title: '成功提示',
-                            content: tips,
-                            icon: 'succeed',
-                            button: [
-                                {
-                                    name: '确定',
-                                    callback: function () {
-                                        window.top.location.reload();
-                                    }
-                                }
-                            ]
-                        });
-                    }
-                    else {
-                        var tips = "";
-                        if (msg.length > 0) {
-                            tips = msg;
-                        }
-                        else {
-                            tips = "发表失败";
-                        }
-                        $.dialog.tips(tips, 3);
-                    }
-                },
-                error: function() {
-
-                }
-            });
-
-        }
-        //心情文本框
-        function obj_del_wbcontent(content_id) {
-            var content = $("#"+content_id).val();
-            if (content == '记录每一天的心情...') {
-                $("#"+content_id).val("");
-            }
-        }
-        function obj_attr_wbcontent(content_id) {
-            var content = $("#"+content_id).val();
-            if (content == '') {
-                $("#title").val("记录每一天的心情...");
-            }
-        }
-        function obj_cancel_wbcontent(content_id) {
-            var content = $("#"+content_id).val();
-            if (content != '记录每一天的心情...') {
-                $("#"+content_id).val("记录每一天的心情...");
-            }
-        }
     </script>
 </head>
 <body><div class="" style="display: none; position: absolute;"><div class="aui_outer"><table class="aui_border"><tbody><tr><td class="aui_w"></td><td class="aui_c"><div class="aui_inner"><table class="aui_dialog"><tbody><tr><td colspan="2" class="aui_header"><div class="aui_titleBar"><div class="aui_title" style="cursor: move;"></div><a class="aui_close" href="http://www.wzqsys.com/usercp.php?c=profile###">×</a></div></td></tr><tr><td class="aui_icon" style="display: none;"><div class="aui_iconBg" style="background: none;"></div></td><td class="aui_main" style="width: auto; height: auto;"><div class="aui_content" style="padding: 20px 25px;"></div></td></tr><tr><td colspan="2" class="aui_footer"><div class="aui_buttons" style="display: none;"></div></td></tr></tbody></table></div></td><td class="aui_e"></td></tr><tr style="display:none;"><td class="aui_sw"></td><td class="aui_s"></td><td class="aui_se" style="cursor: se-resize;"></td></tr></tbody></table></div></div>
@@ -283,7 +66,39 @@
         });
     });
 </script>
-
+<div class="nav0">
+    <div class="oe_top">
+        <div class="oe_topcon">
+            <div class="left">欢迎来到牵手一生婚恋</div>
+            <div class="right drop">
+                <div class="login">
+                    <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="admin" class="areg">注册</a>
+                    <a  rel="nofollow" class="a_2" href="/logout"   class="areg">退出</a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="oe_nav">
+        <div class="oe_navcon">
+            <div class="logo">
+                <a href="index.php"><img class="logo" src="../../../../img/79afd9d32145a106.png"  alt="牵手一生婚恋" /></a><img class="line" src="../../../../img/line.png" alt="" />
+                <div class="clear"></div>
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="/.">首页</a></li>
+                    <li><a href="/riji">日记</a></li>
+                    <li><a href="/index/self">个人中心</a></li>
+                    <li><a href="/case">幸福案例</a></li>
+                    <li><a href="/active">不见不散</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div style="height:160px;"></div>
 <div class="user_main">
     <div class="oe_bn"><span></span>会员中心 &gt;&gt; 我的资料</div>
     <div class="user_main_left">
@@ -292,10 +107,6 @@
                 <dl>
                     <dt>
                         <a href="/show?id={{$datas->id}}"><img src="/uploads/{{$datas->img}}" title="设置头像"></a>
-
-
-
-
                     </dt>
                     <dd>
                         <h2><img src="/index/img/f2fde8e7d8aa2a10.gif" border="0" class="">{{$datas->nichen}}</h2>
@@ -304,19 +115,19 @@
                     <div class="clear"></div>
                 </dl>
                 <div class="clear"></div>
-
             </div>
             <div class="oe_uL_rz">
                 <div class="oe_uL_rz_name">
                     征友状态：
+                    <?php if($datas->state == 1){ ?>
                     进行中
+                    <?php }else{ ?>
+                    关闭
+                    <?php }   ?>
                     <a href="/index/upd_state">修改</a>
                 </div>
-
             </div>
-
             <div class="mu_profile">
-
                 <a href="/index/self" class="a_2">完善资料</a>
             </div>
         </div>
@@ -327,31 +138,19 @@
                     <i class="ico_2"></i><a href="/index/self_message">私信</a>
                 </li>
                 <li>
-                    <i class="ico_2"></i><a href="/index/comment">评论管理</a>
+                    <i class="ico_2"></i><a href="/index/comment">评论</a>
                 </li>
-                <li>
-                    <i class="ico_2"></i><a href="/index/active_index">不见不散</a>{{--<button id="peo">活动</button>--}}
-                </li>
+                <li><i class="ico_7"></i><a href="/index/zan">赞</a></li>
                 <li><i class="ico_7"></i><a href="/index/self_diary">日记</a></li>
-                <li><i class="ico_7"></i><a href="/index/niming">匿名小纸条</a></li>
             </ul>
         </div>
 
-        <div class="u_photo">
-            <dl>
-                <dt>
-                    <a href="http://www.wzqsys.com/usercp.php?c=album&amp;a=upload"><span></span></a>
-                </dt>
-                <div class="clear"></div>
-            </dl>
-        </div>
+
     </div>
 
     <!--//user_main_left End-->
 
     <div class="main_right">
-
-
         <div class="oe_tab_nv">
             <ul>
                 <li class="tab_item current"><a href="/index/self_diary">我的日记</a></li>
@@ -375,7 +174,6 @@
                              发表时间：{{$v->time}}&nbsp;&nbsp;
                             &nbsp;
                             <span>
-
 				&nbsp;&nbsp;&nbsp;
 				<a href="/index/self_diary_del?id={{$v->id}}" onclick="diary_del(&#39;34&#39;);">删除</a>
 			  </span>
@@ -385,29 +183,16 @@
                     <div class="clear"></div>
                 </dl>
                 <div class="clear"></div>
-
             </div>
-
-
         </div>
             @endforeach
-
-
-
-
     </div>
-
-
-
     <div class="clear"></div>
     <!--//main_right End-->
-
     <div style="margin: 30px;"></div>
     <!--//right_kj End-->
-
 </div>
 <!--//user_main End-->
-
 <div class="user_footer" style="padding-bottom:30px;">
     红娘客服　　服务热线0953-2287916<br>
     牵手一生婚恋版权所有 © 2010-<span id="footer-copyright-year">2019</span>

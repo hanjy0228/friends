@@ -515,7 +515,7 @@ class SelfController extends Controller
 //                print_r($comm);die;
         return view('index.comment',['data'=>$user,'comm'=>$comm]);
     }
-    public function niming (Request $request)
+    public function zan (Request $request)
     {
         if(empty($request->session()->get('user')))
         {
@@ -524,7 +524,7 @@ class SelfController extends Controller
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
         $res = DB::select("select * from zan where zan.u_id =  $user->id") ;
-        return view('index.niming',['data'=>$res,'datas'=>$user]);
+        return view('index.zan',['data'=>$res,'datas'=>$user]);
     }
 
 }

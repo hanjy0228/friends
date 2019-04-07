@@ -26,7 +26,7 @@ class LoginController extends Controller{
     }
     public function Logout(Request $request){
         $request->session()->flush();
-        echo "<script>alert('成功退出');location.href='login'</script>";
+        echo "<script>location.href='login'</script>";
         return view('home.login.logout');
     }
     // 注册
@@ -90,16 +90,12 @@ class LoginController extends Controller{
         if($request->isMethod('post')){
             $data=$request->all();
             unset($data['_token']);
-
-            $tj1 = "1=1";
             $tj2 = "1=1";
             $tj3 = "1=1";
             $tj4 = "1=1";
-
             if(!empty($data['maraystate']))
             {
                 $tj2 = "maraystate = ".$data['maraystate'];
-             //   echo $tj2 ; die ;
             }
             if(!empty($data['age']) && !empty($data['age1']))
             {
@@ -109,12 +105,15 @@ class LoginController extends Controller{
             {
                 $tj4 = "height >=". $data['height']." and height <=".$data['height1'];
             }
-
                 $data=DB::select("select * from user where $tj2 and $tj3 and $tj4");
-
             //成功案例
             $data1=DB::table('story')->get();
-            return view('home.index.index',['list'=>$data,'arr'=>$data1]);
+            $user=$request->session()->get('user');
+            $id=DB::table('user')->where('user',$user)->value('id');
+            $message_flag=DB::select("select * from self_message where self_message.get_id=$id") ;
+            $comment_flag=DB::select("select * from comment where comment.u_id=$id") ;
+            $zan_flag=DB::select("select * from zan where zan.u_id=$id") ;
+            return view('home.index.index',['list'=>$data,'zan_flag'=>$zan_flag,'arr'=>$data1,'message_flag'=>$message_flag,'comment_flag'=>$comment_flag]);
         }
     }
     //推荐人信息

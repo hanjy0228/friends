@@ -7,6 +7,7 @@
     <meta name="keywords" content="" />
     <meta name="author" content="OEdev" />
     <meta name="generator" content="OElove" />
+    <link href="/index/css/oe_varpop.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../../css/jdlogin.css" />
     <link rel="stylesheet" href="../../../../css/style.css" />
     <link href="../../../../css/oe_varpop.css" rel="stylesheet" />
@@ -50,39 +51,6 @@
                 }
             });
         });
-
-        //拉黑状态
-        function obj_black_status(uid, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:"getlisten", halttype:"ajax", uid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var flag = json.flag;
-                        if (tipsid != '') {
-                            if (flag == '2') {
-                                //已拉黑
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                            }
-                            else {
-                                //未拉黑
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'black', '"+tipsid+"');\">拉黑名单</a>");
-                            }
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
-
-
         //发表心情
         function obj_public_mood(content_id) {
             var content = $("#"+content_id).val();
@@ -125,9 +93,7 @@
                     window.location.href='.'
                 }
             });
-
         }
-
         //心情文本框
         function obj_del_wbcontent(content_id) {
             var content = $("#"+content_id).val();
@@ -147,8 +113,6 @@
                 $("#"+content_id).val("记录每一天的心情...");
             }
         }
-
-
     </script>
 </head>
 <body>
@@ -161,8 +125,6 @@
                     <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="admin" class="areg">注册</a>
                     <a  rel="nofollow" class="a_2" href="/logout"   class="areg">退出</a>
                 </div>
-
-
             </div>
             <div class="clear"></div>
         </div>
@@ -194,18 +156,16 @@
 </div>
 <div class="oe_footer">
     <div class="oe_footercon">
-
         <div class="fast">
             <h3>快速链接</h3>
             <ul>
-                <li><a rel="nofollow" href="about/1.html">网站介绍</a></li>
-                <li><a rel="nofollow" href="about/4.html">联系我们</a></li>
+                <li>网站介绍</li>
+                <li>联系我们</li>
                 <li><a rel="nofollow" href="about/5.html">免责申明</a></li>
                 <li><a rel="nofollow" href="about/6.html">交友须知</a></li>
                 <li><a rel="nofollow" href="about/7.html">隐私保护</a></li>
                 <li><a href="index.php?c=blackuser">黑名单</a></li>
                 <li><a rel="nofollow" href="javascript:;" f="but_safety_addto" style="cursor:pointer;" onclick="artbox_loginbox();"><i></i>投诉/举报</a></li>
-                <li><a rel="nofollow" href="index.php">返回首页</a></li>
             </ul>
         </div>
         <div class="right">
@@ -218,7 +178,6 @@
         <div class="clear"></div>
     </div>
 </div>
-
 
 <style type="text/css">
     #floatDivr{ display:none;z-index:100;}
@@ -235,19 +194,16 @@
     .scroll_alibaba_1{padding:5px 0px 5px 0px; text-align:center;}
     .scroll_foot_2{ background:#FFFFFF; border:1px solid #a7d8d7; text-align:center; padding:3px; line-height:18px; margin-top:5px;}}
 </style>
-
 <script type='text/javascript' src='source/plugin/online/js/online.js'></script>
 <div id='floatDivr' style='position: absolute;' class='floatonline_1'>
-
-
     <div class='scroll_title_2'><span>在线咨询</span><a href='#' title='关闭' onmousedown='Mouseclose()'>&nbsp;</a></div>
     <div class='scroll_main2'>
         <div class='scroll_text2'>
-
             <div class='scroll_qq_1'>技术支持<a href='tencent://message/?uin=1357862932&Site=&Menu=yes'  title='QQ技术支持' style='text-decoration:none;'><img border='0' src='http://wpa.qq.com/pa?p=1:1357862932:4'></a></div><div class='scroll_qq_1'>商业咨询<a href='tencent://message/?uin=944811833&Site=&Menu=yes'  title='QQ商业咨询' style='text-decoration:none;'><img border='0' src='http://wpa.qq.com/pa?p=1:944811833:4'></a></div><div class='scroll_qq_1'>MSN咨询<a href='msnim:chat?contact=phpcoo@msn.cn'><img border='0'  alt='MSNMSN咨询' src='source/plugin/online/images/msn/msn1.gif'></a></div>  </div>
         <div class='scroll_foot_2'>ssss</div>
     </div>
-</div><script language="javascript" type="text/javascript">
+</div>
+<script language="javascript" type="text/javascript">
     function Mouseclose(){
         document.getElementById('floatDivr').style.display='none';
     }
@@ -284,9 +240,7 @@
                 });
         });
     })
-
     jQuery(".drop").slide({ type:"menu", titCell:".cin", targetCell:".sub",effect:"slideDown",delayTime:300,triggerTime:0,defaultPlay:false,returnDefault:true});
-
 </script>
 </body>
 </html>

@@ -31,7 +31,15 @@ class CaseController extends Controller{
             echo "<script>location.href='/login'</script>";
         }
         $res = DB::select("select * from riji inner join user on riji.u_id = user.id where riji.state=1");
-        return view('home.case.riji',['data'=>$res]);
+
+        return view('home.case.riji',['data'=>$res,]);
+    }
+    public function show_riji(Request $request)
+    {
+        $id=$request->input('id');
+        $data=DB::table('riji')->where('id',$id)->first();
+//        print_r($id);die();
+        return view('home.case.show_riji',['list'=>$data]);
     }
     public function active(Request $request)
     {
@@ -39,7 +47,13 @@ class CaseController extends Controller{
         {
             echo "<script>location.href='/login'</script>";
         }
-        return view('home.case.active');
+        $data=DB::table('active')->get();
+        return view('home.case.active',['list'=>$data]);
     }
-
+    public function active_index(Request $request){
+        $id=$request->input('id');
+        $data=DB::table('active')->where('id',$id)->first();
+        //print_r($data->title);die;
+        return view('home.case.active_index',['list'=>$data]);
+    }
 }

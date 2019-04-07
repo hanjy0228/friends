@@ -11,7 +11,6 @@
         </div>
         <form method="post" action="admin"/>
         {{ csrf_field() }}
-
         <div class="form_box">
             <div class='reg_tips_center'>账号信息 带*号必填</div>
             <div class="container">
@@ -38,7 +37,7 @@
             </div>
             <div class="form_li">
                 <label><font color="red">*</font> 用户名：</label>
-                <input type="user" name="user"/>
+                <input type="user"  style="border:1px solid #e0e0e0;width:250px;height:30px;" name="user"/>
             </div>
             <div id="div_email" class="form_li">
                 <label><font color="red">*</font> 昵&#12288;&#12288;称：</label>
@@ -70,17 +69,16 @@
                 </div>
                 <div id="div_need" class="form_li">
                     <label><font color="red">*</font> 择偶需求：</label>
-                    <input type="textarea" name="need"/>
+                    <input type="textarea" name="need" style="border:1px solid #e0e0e0;width:250px;height:30px;"/>
                 </div>
                 <div id="div_intor" class="form_li">
                     <label><font color="red">*</font> 自我评价：</label>
-                    <input type="textarea" name="intor"/>
+                    <input type="textarea" name="intor" style="border:1px solid #e0e0e0;width:250px;height:30px;"/>
                 </div>
 
             </div>
             <div class="form_li">
                 <div class="tijiao">
-
                         <button class="button_register_s1" style="pointer:hand;" type='submit' onclick="return checkreg();">免费注册</button>
                     </a>
                 </div>
@@ -127,7 +125,6 @@
 @stop
 <script language="javascript">
     function checkreg(){
-
         var t = "";
         var v = "";
 
@@ -138,7 +135,6 @@
             $('#'+t).focus();
             return false;
         }
-
         t = "password";
         v = $("#"+t).val();
         if(v=="") {
@@ -159,7 +155,6 @@
                 return false;
             }
         }
-
         t = "email";
         v = $("#"+t).val();
         if(v=="") {
@@ -167,7 +162,6 @@
             $('#'+t).focus();
             return false;
         }
-
         t = "checkcode";
         v = $("#"+t).val();
         if(v=="") {
@@ -175,8 +169,6 @@
             $('#'+t).focus();
             return false;
         }
-
-
         t = "email";
         v = $("#"+t).val();
         if(v=="") {
@@ -184,31 +176,9 @@
             $('#'+t).focus();
             return false;
         }
-
-
-
-
-
-
         //联系方式
-
-
-
-
-
-
-
         $('#register_form').submit();
         return true;
     }
-    //验证码
-    function refreshCode(tipsid) {
-        var ccImg = document.getElementById("checkCodeImg");
-        if (ccImg) {
-            ccImg.src= ccImg.src + '&' +Math.random();
-            if (tipsid != '') {
-                $('#'+tipsid).html('<font color=#999999>请输入验证码</font>');
-            }
-        }
-    }
+
 </script>

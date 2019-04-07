@@ -11,27 +11,19 @@
             <div class="bd">
                 <form action="login" method="post">
                     {{ csrf_field() }}
-
                     <ul>
                     <li>
                         <label>帐号</label>
-                        <input type="text" name="user" id="loginname" value="用户名" class="w1" />
+                        <input type="text" name="user" id="loginname" value="" class="w1" />
                     </li>
                     <li>
                         <label>密码</label>
                         <input type="password" name="pass" id="password" class="w1" />
                     </li>
-
                     <li class="btn">
                         <a href="javascript:;">
-                            <input id="but_login" type="submit" value="登 陆">
-
+                            <input id="but_login" type="submit" style="background-color:#ff7a8a;width:100px;height: 30px;margin-left: 50px" value="登 陆">
                         </a>
-                        <a class="a_2" href="index.php?c=passport&a=forget">忘记密码</a>
-                    </li>
-                    <li class="other">
-                        <a href="index.php?c=connect&mod=qq"><img src="../../../../img/qq.gif" />QQ登录</a>  &nbsp;&nbsp;
-                        <a href="index.php?c=connect&mod=sina"><img src="../../../../img/sina.gif" />新浪微博登录</a>  &nbsp;&nbsp;
                     </li>
                 </ul>
                 </form>

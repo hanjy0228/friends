@@ -327,9 +327,6 @@
                     <dt>
                         <a href="/show?id={{$data->id}}"><img src="/uploads/{{$data->img}}" title="设置头像"></a>
 
-
-
-
                     </dt>
                     <dd>
                         <h2><img src="/index/img/f2fde8e7d8aa2a10.gif" border="0" class="">{{$data->nichen}}</h2>
@@ -343,7 +340,11 @@
             <div class="oe_uL_rz">
                 <div class="oe_uL_rz_name">
                     征友状态：
+                    <?php if($data-> state== 1){ ?>
                     进行中
+                    <?php }else{ ?>
+                    关闭
+                    <?php }   ?>
                     <a href="/index/upd_state">修改</a>
                 </div>
 
@@ -361,13 +362,10 @@
                     <i class="ico_2"></i><a href="/index/self_message">私信</a>
                 </li>
                 <li>
-                    <i class="ico_2"></i><a href="/index/comment">评论管理</a>
+                    <i class="ico_2"></i><a href="/index/comment">评论</a>
                 </li>
-                <li>
-                    <i class="ico_2"></i><a href="/index/active_index">不见不散</a>{{--<button id="peo">活动</button>--}}
-                </li>
+                <li><i class="ico_7"></i><a href="/index/zan">赞</a></li>
                 <li><i class="ico_7"></i><a href="/index/self_diary">日记</a></li>
-                <li><i class="ico_7"></i><a href="/index/niming">匿名小纸条</a></li>
             </ul>
         </div>
 
@@ -382,7 +380,6 @@
     </div>
 
     <!--//user_main_left End-->
-
         <div class="main_right">
             <div class="oe_tab_nv">
                 <ul>
@@ -392,6 +389,7 @@
                     <li class="tab_item"><a href="/index/upd_state">更改状态</a></li>
                 </ul>
             </div>
+
             <div class="div_smallnav_content_hover" style="height: 472px;">
 
 

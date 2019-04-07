@@ -3,9 +3,6 @@
 @section('content')
 
     <div style="height:140px;"></div>
-
-
-
     <div class="oe_diary_list">
         <div class="left">
             @foreach($data as $k =>$v)
@@ -14,24 +11,22 @@
                     <span><img src="/uploads/{{$v->img}}" alt=""></span>
                 </dt>
                 <dd>
-                    <h3><a href="http://www.wzqsys.com/diary/33.html" class="tit" target="_blank" title="爱的方式">
+                    <h3><a href="show_riji?id={{$v->id}}" class="tit" target="_blank" title="爱的方式">
                             {{$v->title}}
                         </a> <span>[婚恋课堂]</span></h3>
                     <p class="text">
                        {{$v->content}}
                     </p>
                     <p class="time">
-                        <span>【<a href="show?id={{$v->id}}" target="_blank">{{$v->nichen}}</a>】
+                        <span>【<a href="show?id={{$v->u_id}}" target="_blank">{{$v->nichen}}</a>】
                             <i></i>{{$v->time}}</span>
                     </p>
                 </dd>
                 <div class="clear"></div>
             </dl>
             @endforeach
-
         </div>
         <div class="right">
-
             <div class="hot_diary">
                 <h3><i>热门日记</i></h3>
                 <ul>

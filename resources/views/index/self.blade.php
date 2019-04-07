@@ -78,10 +78,10 @@
                     <tr>
                         <td class="lblock">婚姻状态 <span class="f_red">*</span></td>
                         <td class="rblock">
-                            <?php if($data->maraystate == 1){ ?>
-                            单身
+                            <?php if($data->state == 1){ ?>
+                            进行中
                             <?php }else{ ?>
-                            离异
+                            关闭
                             <?php }   ?>
                             <span class="f_red" id="dmarrystatus"></span></td>
                         <td class="lblock">身 高 <span class="f_red">*</span></td>

@@ -233,7 +233,6 @@
                         <p><label f="but_cond_multi_confirm" data-id1="s_sheight" data-id2="s_eheight" data-tid="s_height_text" data-tips="身高" data-box="s_height_box">确定</label></p>
                     </div>
                 </div>
-
                 <input class="btn_1" f="but_search_cond_user" type="submit" value="搜索">
             </div>
         </form>
@@ -242,7 +241,6 @@
     <div class="oe_nuser">
         <div class="hd">
             <b>推荐会员</b>
-
             <div class="clear"></div>
         </div>
         <div class="bd drop">
@@ -261,7 +259,6 @@
                         <p class="btn">
                              <h2 id="{{$v->id}}">&nbsp;&nbsp;{{$v->zan}}</h2>
                         <button class="zan" ids="{{$v->id}}"  >点赞</button>
-
                             </p>
                     </dd>
                     <div class="clear"></div>

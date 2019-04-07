@@ -14,20 +14,20 @@
                 <dt>
                     <span><img src="/uploads/{{$v->img}}"></span>
                     <h3>
-                        <a href="http://www.wzqsys.com/usercp.php?c=weibo&amp;uid=162049">{{$v->nichen}}</a>&nbsp;&nbsp;
+                    <a href="/show?id={{$v->id}}" >{{$v->nichen}}</a>
+                    &nbsp;&nbsp;
+                    @if($v->state==0)
+                        未查看
+                    @else
+                        已查看
+                    @endif
+                    <a href="/index/see_comment?id={{$v->id}}">查看</a>
                     </h3>
                     <p class="time">{{$v->time}}</p>
                 </dt>
                 <dd class="text">
                    {{$v->content}}
                 </dd>
-                <dd>  @if($v->state==0)
-                        未查看
-                    @else
-                        已查看
-                    @endif</dd>
-                <dd><a href="/index/see_comment?id={{$v->id}}">查看</a></dd>
-
             </dl>
         @endforeach
             <div class="weibo-item" style="display:none;">

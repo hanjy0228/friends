@@ -29,7 +29,9 @@ Route::group(['namespace'=>'home'],function (){
     Route::any('diary','DiaryController@Diary');
     Route::any('case','CaseController@Case');
     Route::any('active','CaseController@active');
+    Route::any('active_index','CaseController@active_index');
     Route::any('riji','CaseController@riji');
+    Route::any('show_riji','CaseController@show_riji');
     Route::any('case_list','CaseController@Case_list');
 
 });
@@ -53,7 +55,6 @@ Route::group(['namespace'=>'index','prefix'=>'index'],function (){
     Route::any('/upd_pass','SelfController@upd_pass');
     Route::any('/upd_pass_sub','SelfController@upd_pass_sub');
     Route::any('/actives','SelfController@actives');
-    Route::any('/active_index','SelfController@active_index');
     Route::any('/char','SelfController@char');
     Route::any('/char_list','SelfController@char_list');
     Route::any('/chos','SelfController@chos');
@@ -61,7 +62,7 @@ Route::group(['namespace'=>'index','prefix'=>'index'],function (){
     Route::any('/secoty_sub','SelfController@secoty_sub');
     Route::any('/comment','SelfController@comment');
     Route::any('/content_sub','SelfController@content_sub');
-    Route::any('/niming','SelfController@niming');
+    Route::any('/zan','SelfController@zan');
     Route::any('/see_zan','SelfController@See_zan');
 
 });
