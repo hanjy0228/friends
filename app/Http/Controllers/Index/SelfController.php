@@ -97,7 +97,7 @@ class SelfController extends Controller
         //session
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
-        $res = DB::table('self_message')->where('to_id', $user->id)->join('user', 'self_message.p_id', '=', 'user.id')->select('self_message.*', 'user.nichen')->get();
+        $res = DB::table('self_message')->where('r_id', $user->id)->join('user', 'self_message.p_id', '=', 'user.id')->select('self_message.*', 'user.nichen')->get();
         $count = $res->count();
         return view('index.self_message', ['data' => $res,'datas'=>$user,'count' => $count]);
     }
@@ -126,7 +126,7 @@ class SelfController extends Controller
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
         DB::table('zan')->where('id', $id)->update(['state' => 1]);
-        $res = DB::table('zan')->where('zan.id', $id)->join('user', 'zan.u_id', '=', 'user.id')
+        $res = DB::table('zan')->where('zan.id', $id)->join('user', 'zan.r_id', '=', 'user.id')
             ->select('zan.*', 'user.nichen')->get();
         return view('index.see_zan', ['data' => $res,'datas'=>$user]);
 
@@ -141,7 +141,7 @@ class SelfController extends Controller
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
         DB::table('comment')->where('id', $id)->update(['state' => 1]);
-        $res = DB::table('comment')->where('comment.id', $id)->join('user', 'comment.u_id', '=', 'user.id')
+        $res = DB::table('comment')->where('comment.id', $id)->join('user', 'comment.p_id', '=', 'user.id')
             ->select('comment.*', 'user.nichen')->get();
         return view('index.see_comment', ['data' => $res,'datas'=>$user]);
 
@@ -155,7 +155,7 @@ class SelfController extends Controller
         }
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
-        $res = DB::table('self_message')->where('p_id', $user->id)->join('user', 'self_message.to_id', '=', 'user.id')->select
+        $res = DB::table('self_message')->where('p_id', $user->id)->join('user', 'self_message.r_id', '=', 'user.id')->select
         ('self_message.*', 'user.nichen')->get();
 //        print_r($res);die();
         $count = $res->count();
@@ -172,7 +172,7 @@ class SelfController extends Controller
         //echo $id ; die ;
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
-        $res = DB::table('self_message')->where('self_message.id', $id)->join('user', 'self_message.to_id', '=', 'user.id')
+        $res = DB::table('self_message')->where('self_message.id', $id)->join('user', 'self_message.r_id', '=', 'user.id')
             ->select('self_message.*', 'user.nichen')->get();
 
         return view('index.see_get_message', ['data' => $res,'datas'=>$user]);
@@ -356,7 +356,7 @@ class SelfController extends Controller
         $id=$user->id;
 //        $id=$request->input('id');
 //        $comm = DB::select("select * from comment inner join user on comment.u_id = user.id") ;
-        $comm= DB::select("select * from comment inner join user on (comment.u_id = user.id) and comment.p_id=$id") ;
+        $comm= DB::select("select * from comment inner join user on (comment.p_id = user.id) and comment.r_id=$id") ;
 //                print_r($comm);die;
         return view('index.comment',['data'=>$user,'comm'=>$comm]);
     }
@@ -368,7 +368,7 @@ class SelfController extends Controller
         }
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
-        $res = DB::select("select * from zan where zan.u_id =  $user->id") ;
+        $res = DB::select("select * from zan where zan.r_id =  $user->id") ;
         return view('index.zan',['data'=>$res,'datas'=>$user]);
     }
 

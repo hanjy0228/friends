@@ -14,7 +14,7 @@
                 <dt>
                     <span><img src="/uploads/{{$v->img}}"></span>
                     <h3>
-                    <a href="/show?id={{$v->u_id}}" >{{$v->nichen}}</a>
+                    <a href="/show?id={{$v->p_id}}" >{{$v->nichen}}</a>
                     &nbsp;&nbsp;
                     @if($v->state==0)
                         未查看
