@@ -30,22 +30,6 @@
     </script>
     <![endif]-->
     <script type="text/javascript">
-        $(function() {
-            $(window).scroll(function() {
-                var explorer = window.navigator.userAgent;
-                var scrollTops = 0;
-                if (explorer.indexOf("Chrome") >= 0 || explorer.indexOf("Safari") >= 0) {
-                    var scrollTops = document.body.scrollTop;
-                } else {
-                    scrollTops = document.documentElement.scrollTop;
-                }
-                if (parseInt(scrollTops) >= 70) {
-                    $(".right_kj").slideDown("slow");
-                } else {
-                    $(".right_kj").slideUp("slow");
-                }
-            });
-        });
         //发表心情
         function obj_public_mood(content_id) {
             var content = $("#"+content_id).val();
@@ -114,20 +98,7 @@
 <body><div class="" style="display: none; position: absolute;"><div class="aui_outer"><table class="aui_border"><tbody><tr><td class="aui_w"></td><td class="aui_c"><div class="aui_inner"><table class="aui_dialog"><tbody><tr><td colspan="2" class="aui_header"><div class="aui_titleBar"><div class="aui_title" style="cursor: move;"></div><a class="aui_close" href="http://www.wzqsys.com/usercp.php?c=profile###">×</a></div></td></tr><tr><td class="aui_icon" style="display: none;"><div class="aui_iconBg" style="background: none;"></div></td><td class="aui_main" style="width: auto; height: auto;"><div class="aui_content" style="padding: 20px 25px;"></div></td></tr><tr><td colspan="2" class="aui_footer"><div class="aui_buttons" style="display: none;"></div></td></tr></tbody></table></div></td><td class="aui_e"></td></tr><tr style="display:none;"><td class="aui_sw"></td><td class="aui_s"></td><td class="aui_se" style="cursor: se-resize;"></td></tr></tbody></table></div></div>
 
 <div style="width:100%;height:75px;"></div>
-<script type="text/javascript">
-    $(function() {
-        $(".user-top-tips").on ({
-            mouseover: function() {
-                $("div[name='tip_title']").removeClass("user-top-tips").addClass("user-top-tips-on");
-                $(".user-top-tips-list").show();
-            },
-            mouseout: function() {
-                $("div[name='tip_title']").removeClass("user-top-tips-on").addClass("user-top-tips");
-                $(".user-top-tips-list").hide();
-            }
-        });
-    });
-</script>
+
 <div class="nav0">
     <div class="oe_top">
         <div class="oe_topcon">
@@ -286,9 +257,6 @@
 
     </div>
 
-    <script type="text/javascript">
-        jQuery(".drop").slide({ type:"menu", titCell:".cin", targetCell:".sub",effect:"slideDown",delayTime:300,triggerTime:0,defaultPlay:false,returnDefault:true});
-    </script>
     <script type="text/javascript">
         //基本资料
         function checkbase() {

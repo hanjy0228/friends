@@ -51,6 +51,7 @@
 </div>
 
 <script type="text/javascript">
+    //slide效果
     $(function(){
         jQuery(".oe_case_list").slide({ type:"menu", titCell:".nLi", targetCell:".sub",effect:"slideDown",delayTime:300,triggerTime:0});
     });

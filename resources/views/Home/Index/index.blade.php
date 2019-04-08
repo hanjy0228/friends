@@ -3,8 +3,6 @@
 @section('content')
 <div class="oe_banner">
     <div class="bd">
-
-
         <ul>
             <li style="background:url('../../../../img/index/239cb56db7339efa.jpg') no-repeat center top"><a href="#"></a></li>
             <li style="background:url('../../../../img/index/84fc0cf8b7f18989.jpg') no-repeat center top"><a href="#"></a></li>
@@ -12,7 +10,7 @@
     </div>
     <div class="hd">
         <ul>
-            <li><span></span></li><li><span></span></li>    </ul>
+            <li><span></span></li><li><span></span></li></ul>
     </div>
     <div class="banner_bg"></div>
 </div>
@@ -234,7 +232,6 @@
             <div class="clear"></div>
         </div>
         <div class="bd drop">
-
             <div>
                 @foreach($list as $k=>$v)
                 <dl class="cin">
@@ -257,13 +254,10 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        jQuery(".oe_nuser").slide({trigger:"click"});
-    </script>
+
 </div>
 <script src="../../../js/jquery-3.3.1.js"></script>
 <script>
-
     $('.zan').click(function () {
         var id=$(this).attr('ids');
         $.post("zan", {id:id},
@@ -271,14 +265,7 @@
                 $("#"+id).html("&nbsp;&nbsp;"+data);
             });
     });
-
 </script>
-
-
-<script type="text/javascript">
-    jQuery(".oe_party").slide({ type:"menu", titCell:".nLi", targetCell:".sub",effect:"slideDown",delayTime:300,triggerTime:0,returnDefault:true});
-</script>
-
 
 <div class="oe_story">
     <div class="top"></div>

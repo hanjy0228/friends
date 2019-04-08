@@ -51,7 +51,6 @@
                 <li><label>身高：</label>{{$data->height}}CM</li>
                 <li><label>月薪收入：</label>{{$data->money}}</li>
                 <li><label>所在地区：</label>{{$data->hu}}</li>
-
                 <div class="clear"></div>
             </ul>
             <div class="clear"></div>

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../../../css/jdlogin.css" />
     <link rel="stylesheet" href="../../../../css/style.css" />
     <link href="../../../../css/oe_varpop.css" rel="stylesheet" />
+    <link href="../../../../css/sharebar.css" rel="stylesheet" type="text/css" />
     <script type='text/javascript'>
         var _ROOT_PATH = "";
     </script>
@@ -27,30 +28,13 @@
     <script type="text/javascript" src="../../../../js/oe_varpop.js"></script>
     <script type="text/javascript" src="../../../../js/jquery.SuperSlide.2.1.1.js"></script>
     <script type="text/javascript" src="../../../../js/search.js"></script>
-
-    <link href="../../../../css/sharebar.css" rel="stylesheet" type="text/css" />
     <script src="../../../../js/sharebar.js"></script>
     <script type="text/javascript">
         var share_site_url = "";
         var share_site_name = "牵手一生婚恋";
     </script>
     <script type="text/javascript">
-        $(function() {
-            $(window).scroll(function() {
-                var explorer = window.navigator.userAgent;
-                var scrollTops = 0;
-                if (explorer.indexOf("Chrome") >= 0 || explorer.indexOf("Safari") >= 0) {
-                    var scrollTops = document.body.scrollTop;
-                } else {
-                    scrollTops = document.documentElement.scrollTop;
-                }
-                if (parseInt(scrollTops) >= 70) {
-                    $(".right_kj").slideDown("slow");
-                } else {
-                    $(".right_kj").slideUp("slow");
-                }
-            });
-        });
+
         //发表心情
         function obj_public_mood(content_id) {
             var content = $("#"+content_id).val();
@@ -183,52 +167,6 @@
     .scroll_foot_2{ background:#FFFFFF; border:1px solid #a7d8d7; text-align:center; padding:3px; line-height:18px; margin-top:5px;}}
 </style>
 <script type='text/javascript' src='source/plugin/online/js/online.js'></script>
-<div id='floatDivr' style='position: absolute;' class='floatonline_1'>
-    <div class='scroll_title_2'><span>在线咨询</span><a href='#' title='关闭' onmousedown='Mouseclose()'>&nbsp;</a></div>
-    <div class='scroll_main2'>
-        <div class='scroll_text2'>
-            <div class='scroll_qq_1'>技术支持<a href='tencent://message/?uin=1357862932&Site=&Menu=yes'  title='QQ技术支持' style='text-decoration:none;'><img border='0' src='http://wpa.qq.com/pa?p=1:1357862932:4'></a></div><div class='scroll_qq_1'>商业咨询<a href='tencent://message/?uin=944811833&Site=&Menu=yes'  title='QQ商业咨询' style='text-decoration:none;'><img border='0' src='http://wpa.qq.com/pa?p=1:944811833:4'></a></div><div class='scroll_qq_1'>MSN咨询<a href='msnim:chat?contact=phpcoo@msn.cn'><img border='0'  alt='MSNMSN咨询' src='source/plugin/online/images/msn/msn1.gif'></a></div>  </div>
-        <div class='scroll_foot_2'>ssss</div>
-    </div>
-</div>
-<script language="javascript" type="text/javascript">
-    function Mouseclose(){
-        document.getElementById('floatDivr').style.display='none';
-    }
-    window.onload = function(){
-        var floatObjr = document.getElementById('floatDivr');
-        Floaters.addItem(floatObjr, screen.width-158, 110);
-        Floaters.sPlay();
-        document.getElementById('floatDivr').style.display='block';
-    }
-</script>
-<script type='text/javascript'>
-    //WAP提醒
-    $(function(){
-        var x = 10;
-        var y = 20;
-        $("a.waptips").mouseover(function(e){
-            this.myTitle = this.title;
-            this.title = "";
-            var tooltip = "<div id='waptips'>"+ this.myTitle +"<\/div>"; //创建 div 元素
-            $("body").append(tooltip);    //把它追加到文档中
-            $("#waptips")
-                .css({
-                    "top": (e.pageY+y) + "px",
-                    "left": (e.pageX+x)  + "px"
-                }).show("fast");      //设置x坐标和y坐标，并且显示
-        }).mouseout(function(){
-            this.title = this.myTitle;
-            $("#waptips").remove();   //移除
-        }).mousemove(function(e){
-            $("#waptips")
-                .css({
-                    "top": (e.pageY+y) + "px",
-                    "left": (e.pageX+x)  + "px"
-                });
-        });
-    })
-    jQuery(".drop").slide({ type:"menu", titCell:".cin", targetCell:".sub",effect:"slideDown",delayTime:300,triggerTime:0,defaultPlay:false,returnDefault:true});
-</script>
+
 </body>
 </html>

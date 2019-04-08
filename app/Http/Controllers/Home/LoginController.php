@@ -71,7 +71,6 @@ class LoginController extends Controller{
     public function Case_list(Request $request){
         $id=$request->input('id');
         $data=DB::table('story')->where('id',$id)->first();
-        //print_r($data->title);die;
         return view('home.case.case_list',['list'=>$data]);
     }
     //搜索
@@ -99,9 +98,9 @@ class LoginController extends Controller{
             $data1=DB::table('story')->get();
             $user=$request->session()->get('user');
             $id=DB::table('user')->where('user',$user)->value('id');
-            $message_flag=DB::select("select * from self_message where self_message.p_id=$id") ;
-            $comment_flag=DB::select("select * from comment where comment.u_id=$id") ;
-            $zan_flag=DB::select("select * from zan where zan.u_id=$id") ;
+            $message_flag=DB::select("select * from self_message where self_message.r_id=$id and self_message.state=0") ;
+            $comment_flag=DB::select("select *  from comment where comment.r_id=$id and comment.state=0") ;
+            $zan_flag=DB::select("select * from zan where zan.r_id=$id and zan.state=0") ;
             return view('home.index.index',['list'=>$data,'zan_flag'=>$zan_flag,'arr'=>$data1,'message_flag'=>$message_flag,'comment_flag'=>$comment_flag]);
         }
     }
@@ -143,7 +142,6 @@ class LoginController extends Controller{
                 echo "<script>alert('不能为空');location.href='si';</script>";
             }
             $time=date('Y-m-d');
-//            print_r($time);die();
             $u_id=DB::table('user')->where('user',$user)->value('id');
             $res=DB::table('self_message')->insert(['content'=>$content,'r_id'=>$id,'p_id'=>$u_id,'time'=>$time]);
             if($res){

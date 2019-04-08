@@ -21,7 +21,6 @@ class CaseController extends Controller{
     public function Case_list(Request $request){
         $id=$request->input('id');
         $data=DB::table('story')->where('id',$id)->first();
-        //print_r($data->title);die;
         return view('home.case.case_list',['list'=>$data]);
     }
     public function riji(Request $request)
@@ -52,7 +51,6 @@ class CaseController extends Controller{
     public function active_index(Request $request){
         $id=$request->input('id');
         $data=DB::table('active')->where('id',$id)->first();
-        //print_r($data->title);die;
         return view('home.case.active_index',['list'=>$data]);
     }
 }

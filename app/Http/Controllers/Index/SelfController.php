@@ -218,13 +218,11 @@ class SelfController extends Controller
         {
             echo "<script>location.href='/login'</script>";
         }
-
         $data['title'] = $request->post('title');
         $data['state'] = $request->post('state');
         $data['content'] = $request->post('content');
         $data['time'] = date('Y-m-d');
         $res = DB::table('riji')->where('title', $data['title'])->select('id')->get()->toArray();
-
         if (empty($res)) {
             //session
             $value = $request->session()->get('user');
@@ -339,10 +337,7 @@ class SelfController extends Controller
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
         $id=$user->id;
-//        $id=$request->input('id');
-//        $comm = DB::select("select * from comment inner join user on comment.u_id = user.id") ;
         $comm= DB::select("select * from user inner join comment on (comment.p_id = user.id) and comment.r_id=$id") ;
-//                print_r($comm);die;
         return view('index.comment',['data'=>$user,'comm'=>$comm]);
     }
     public function see_comment(Request $request)

@@ -3,7 +3,6 @@
 @section('content')
 
     <!--//user_main_left End-->
-
     <div class="main_right">
         <div class="oe_tab_nv">
             <ul>
@@ -189,7 +188,6 @@
                             <span id="dsalary" class="f_red"></span>
                         </td>
                     </tr>
-                    <!-- 住房、购车 -->
                     <!-- 提交按钮 -->
                     <tr>
                         <td class="lblock" height="50px"></td>

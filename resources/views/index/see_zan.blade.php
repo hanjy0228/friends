@@ -30,139 +30,6 @@
     </script>
     <![endif]-->
     <script type="text/javascript">
-        $(function() {
-            $(window).scroll(function() {
-                var explorer = window.navigator.userAgent;
-                var scrollTops = 0;
-                if (explorer.indexOf("Chrome") >= 0 || explorer.indexOf("Safari") >= 0) {
-                    var scrollTops = document.body.scrollTop;
-                } else {
-                    scrollTops = document.documentElement.scrollTop;
-                }
-                if (parseInt(scrollTops) >= 70) {
-                    $(".right_kj").slideDown("slow");
-                } else {
-                    $(".right_kj").slideUp("slow");
-                }
-            });
-        });
-
-        //关注状态
-        function obj_listen_status(uid, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:"getlisten", halttype:"ajax", uid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var flag = json.flag;
-                        if (tipsid != '') {
-                            if (flag == '1') {
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'cancel', '"+tipsid+"');\">取消关注</a>");
-                            }
-                            else {
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                            }
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
-        //拉黑状态
-        function obj_black_status(uid, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:"getlisten", halttype:"ajax", uid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var flag = json.flag;
-                        if (tipsid != '') {
-                            if (flag == '2') {
-                                //已拉黑
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                            }
-                            else {
-                                //未拉黑
-                                $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'black', '"+tipsid+"');\">拉黑名单</a>");
-                            }
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
-        //操作好友 加关注、拉黑、取消
-        function obj_action_listen (uid, action, tipsid) {
-            if (uid > 0) {
-                $.ajax({
-                    type: "POST",
-                    url: _ROOT_PATH + "usercp.php?c=listen",
-                    cache: false,
-                    data: {a:action, halttype:"ajax", fuid:uid, tipsid:tipsid, r:get_rndnum(8)},
-                    dataType: "json",
-                    success: function(data) {
-                        var json = eval(data);
-                        var type = json.type;
-                        var flag = json.flag;
-                        var error = json.error;
-                        if (tipsid != '') {
-                            //加关注
-                            if (type == 'listen') {
-                                if (error.length==0) {
-                                    if (flag == '1') {
-                                        $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-coff\" onclick=\"obj_action_listen('"+uid+"', 'cancel', '"+tipsid+"');\">取消关注</a>");
-                                    }
-                                }
-                                else {
-                                    alert(error);
-                                }
-                            }
-                            //取消关注
-                            if (type == 'cancel') {
-                                if (error.length==0) {
-                                    if (flag == '1') {
-                                        $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                                    }
-                                }
-                                else {
-                                    alert(error);
-                                }
-                            }
-                            //拉黑名单
-                            if (type == 'black') {
-                                if (error.length==0) {
-                                    if (flag == '1') {
-                                        $("#"+tipsid).html("<a href=\"###\" class=\"pcbtn-green\" onclick=\"obj_action_listen('"+uid+"', 'listen', '"+tipsid+"');\">+加关注</a>");
-                                    }
-                                }
-                                else {
-                                    alert(error);
-                                }
-                            }
-
-                        }
-                    },
-                    error: function() {
-
-                    }
-                });
-            }
-        }
-
         //发表心情
         function obj_public_mood(content_id) {
             var content = $("#"+content_id).val();
@@ -271,20 +138,7 @@
 <body><div class="" style="display: none; position: absolute;"><div class="aui_outer"><table class="aui_border"><tbody><tr><td class="aui_w"></td><td class="aui_c"><div class="aui_inner"><table class="aui_dialog"><tbody><tr><td colspan="2" class="aui_header"><div class="aui_titleBar"><div class="aui_title" style="cursor: move;"></div><a class="aui_close" href="http://www.wzqsys.com/usercp.php?c=profile###">×</a></div></td></tr><tr><td class="aui_icon" style="display: none;"><div class="aui_iconBg" style="background: none;"></div></td><td class="aui_main" style="width: auto; height: auto;"><div class="aui_content" style="padding: 20px 25px;"></div></td></tr><tr><td colspan="2" class="aui_footer"><div class="aui_buttons" style="display: none;"></div></td></tr></tbody></table></div></td><td class="aui_e"></td></tr><tr style="display:none;"><td class="aui_sw"></td><td class="aui_s"></td><td class="aui_se" style="cursor: se-resize;"></td></tr></tbody></table></div></div>
 
 <div style="width:100%;height:75px;"></div>
-<script type="text/javascript">
-    $(function() {
-        $(".user-top-tips").on ({
-            mouseover: function() {
-                $("div[name='tip_title']").removeClass("user-top-tips").addClass("user-top-tips-on");
-                $(".user-top-tips-list").show();
-            },
-            mouseout: function() {
-                $("div[name='tip_title']").removeClass("user-top-tips-on").addClass("user-top-tips");
-                $(".user-top-tips-list").hide();
-            }
-        });
-    });
-</script>
+
 <div class="nav0">
     <div class="oe_top">
         <div class="oe_topcon">
@@ -325,11 +179,7 @@
             <div class="oe_index_uL_head">
                 <dl>
                     <dt>
-                        <a href="/show?id={{$datas->id}}"><img src="/uploads/{{$datas->img}}" title="设置头像"></a>
-
-
-
-
+                        <a href="/show?id={{$datas->id}}"><img src="/uploads/{{$datas->img}}" ></a>
                     </dt>
                     <dd>
                         <h2><img src="/index/img/f2fde8e7d8aa2a10.gif" border="0" class="">{{$datas->nichen}}</h2>
@@ -420,38 +270,7 @@
         牵手一生婚恋版权所有 © 2010-<span id="footer-copyright-year">2019</span>
     </div>
     <!--//user_footer End-->
-    <script type="text/javascript">
-        //新信息
-        function obj_loading_count(type, tipsid) {
-            $.ajax({
-                type: "POST",
-                url: _ROOT_PATH + "usercp.php?c=popwin&a=count",
-                cache: false,
-                data: {type:type, r:get_rndnum(8)},
-                dataType: "json",
-                beforeSend: function(XMLHttpRequest) {
-                    XMLHttpRequest.setRequestHeader("request_type","ajax");
-                },
-                success: function(data) {
-                    var json = eval(data);
-                    var num = json.num;
-                    if (num > 0) {
-                        var html = "";
-                        html = html+"<font style='color:#51545B;'>(";
-                        if (num > 99) {
-                            html = html+"99";
-                        }
-                        else {
-                            html = html+num;
-                        }
-                        html = html+")</font>";
-                        $("#"+tipsid).html(html);
-                    }
-                },
-                error: function() {}
-            });
-        }
-    </script>
+
     <style>
         .popwin-box{
             position:fixed;
@@ -574,100 +393,6 @@
 
 
     </div>
-    <script type="text/javascript">
-        $(function() {
-            $(".popwin-tx").addClass("block");
-            //最小化
-            $(".popwin-min").click(function() {
-                $(".popwin-main").slideUp("slow");
-            });
-        });
-
-        //扑捉区域
-        function obj_click_menu(id, num, title) {
-            var _v = $("#click_menu_value").val();
-            //同一区域
-            if (_v == id) {
-                $(".popwin-title").html(title);
-                if ($("#popwin-main").css('display') == 'none') {
-                    $(".popwin-main").slideDown("slow");
-                    obj_popwin_data(id, num, "popwin-data");
-                }
-                else {
-                    $(".popwin-main").slideUp("slow");
-                }
-            }
-            //不同区域
-            else {
-                if ($("#popwin-main").css('display') == 'block') {
-                    $(".popwin-main").slideUp("slow");
-                }
-                $("#click_menu_value").val(id);
-                $(".popwin-title").html(title);
-                $(".popwin-main").slideDown("slow");
-                obj_popwin_data(id, num, "popwin-data");
-            }
-        }
-
-        //获取数据
-        function obj_popwin_data(type, num, tips) {
-            $("#"+tips).html("<div style='text-align:center;padding:10px;color:#999999;'>loading</div>");
-            $.ajax({
-                type: "POST",
-                url: _ROOT_PATH + "usercp.php?c=popwin",
-                cache: false,
-                data: {a:type, num:num, r:get_rndnum(8)},
-                dataType: "json",
-                beforeSend: function(XMLHttpRequest) {
-                    XMLHttpRequest.setRequestHeader("request_type","ajax");
-                },
-                success: function(data) {
-                    var json = eval(data);
-                    var result = json.result;
-                    $("#"+tips).html(result);
-                },
-                error: function() {}
-            });
-        }
-
-        //imbox
-        function obj_imbox() {
-            var tips = "popwin-data";
-            $.ajax({
-                type: "POST",
-                url: _ROOT_PATH + "usercp.php?c=popwin",
-                cache: false,
-                data: {r:get_rndnum(8)},
-                dataType: "json",
-                success: function(data) {
-                    var json = eval(data);
-                    var response = json.response;
-                    var result = json.result;
-                    var type = json.type;
-                    //存在数据
-                    if (response == 1) {
-                        var title = '';
-                        if (type == 'newvisit') {
-                            title = '谁访问了我';
-                        }
-                        $(".popwin-title").html(title);
-                        $("#"+tips).html(result);
-                        if ($("#popwin-main").css('display') == 'block') {
-                            $(".popwin-main").slideUp("slow");
-                        }
-                        $(".popwin-main").slideDown("slow");
-                    }
-                },
-                error: function() {}
-            });
-        }
-    </script>
-
-    <script type="text/javascript">
-        jQuery(".drop").slide({ type:"menu", titCell:".cin", targetCell:".sub",effect:"slideDown",delayTime:300,triggerTime:0,defaultPlay:false,returnDefault:true});
-    </script>
-
-
     <script type="text/javascript">
         //基本资料
         function checkbase() {
