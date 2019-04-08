@@ -162,8 +162,9 @@ class LoginController extends Controller{
             $p_id = DB::table('user')->where('user', $user)->value('id');
             $zan=DB::table('user')->where('id',$id)->value('zan');
             $zan=$zan+1;
+            $time=date('Y-m-d');
             $p_nichen= DB::table('user')->where('user', $user)->value('nichen');
-            $resZan = DB::table('zan')->insert([ 'p_id' => $p_id, 'r_id' => $id,'state'=>0,'p_nichen'=>$p_nichen]);
+            $resZan = DB::table('zan')->insert([ 'time'=>$time,'p_id' => $p_id, 'r_id' => $id,'state'=>0,'p_nichen'=>$p_nichen]);
             $resUser=DB::table('user')->where('id',$id)->update(['zan'=>$zan]);
             if ($resZan&&$resUser) {
                 echo "<script>alert('点赞成功');location.href='.'</script>";

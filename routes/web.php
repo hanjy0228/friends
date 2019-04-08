@@ -17,7 +17,6 @@ Route::get('/', function () {
 Route::group(['namespace'=>'home'],function (){
     Route::any('','LoginController@Index');
     Route::any('logout','LoginController@Logout');
-    Route::any('upload', 'LoginController@upload');
     Route::any('login','LoginController@Login');
     Route::any('admin','LoginController@Admin');
     Route::any('sou','LoginController@Sou');
@@ -25,8 +24,6 @@ Route::group(['namespace'=>'home'],function (){
     Route::any('si','LoginController@Si');
     Route::any('zan','LoginController@Zan');
     Route::any('content_sub','LoginController@content_sub');
-    Route::any('party','PartyController@Party');
-    Route::any('diary','DiaryController@Diary');
     Route::any('case','CaseController@Case');
     Route::any('active','CaseController@active');
     Route::any('active_index','CaseController@active_index');

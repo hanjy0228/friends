@@ -171,6 +171,7 @@
                     <td width="10%">状态</td>
                     <td width="60%">点赞人</td>
                     <td>查看</td>
+                    <td>时间</td>
                 </tr>
                 @if(!empty($data))
                     @foreach($data as $k => $v)
@@ -184,6 +185,7 @@
                             </td>
                             <td><a href="/show?id={{$v->p_id}}" >{{$v->p_nichen}}</a>给您点赞了</td>
                             <td><a href="/index/see_zan?id={{$v->id}}">查看</a></td>
+                            <td>{{$v->time}}</td>
                         </tr>
                     @endforeach
                 @else

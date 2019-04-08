@@ -131,21 +131,6 @@ class SelfController extends Controller
         return view('index.see_zan', ['data' => $res,'datas'=>$user]);
 
     }
-    public function see_comment(Request $request)
-    {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        $id = $request->get('id');
-        $value = $request->session()->get('user');
-        $user = DB::table('user')->where('user',$value)->first();
-        DB::table('comment')->where('id', $id)->update(['state' => 1]);
-        $res = DB::table('comment')->where('comment.id', $id)->join('user', 'comment.p_id', '=', 'user.id')
-            ->select('comment.*', 'user.nichen')->get();
-        return view('index.see_comment', ['data' => $res,'datas'=>$user]);
-
-    }
     //已经发送的私信
     public function self_get_message(Request $request)
     {
@@ -356,9 +341,24 @@ class SelfController extends Controller
         $id=$user->id;
 //        $id=$request->input('id');
 //        $comm = DB::select("select * from comment inner join user on comment.u_id = user.id") ;
-        $comm= DB::select("select * from comment inner join user on (comment.p_id = user.id) and comment.r_id=$id") ;
+        $comm= DB::select("select * from user inner join comment on (comment.p_id = user.id) and comment.r_id=$id") ;
 //                print_r($comm);die;
         return view('index.comment',['data'=>$user,'comm'=>$comm]);
+    }
+    public function see_comment(Request $request)
+    {
+        if(empty($request->session()->get('user')))
+        {
+            echo "<script>location.href='/login'</script>";
+        }
+        $id = $request->get('id');
+        $value = $request->session()->get('user');
+        $user = DB::table('user')->where('user',$value)->first();
+        DB::table('comment')->where('id', $id)->update(['state' => 1]);
+        $res = DB::table('comment')->where('comment.id', $id)->join('user', 'comment.p_id', '=', 'user.id')
+            ->select('comment.*', 'user.nichen')->get();
+        return view('index.see_comment', ['data' => $res,'datas'=>$user]);
+
     }
     public function zan (Request $request)
     {
