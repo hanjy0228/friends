@@ -389,7 +389,7 @@
                 <table class="table">
                     <tbody>
                         @foreach($data as $k => $v)
-                            <p><a href="/show?id={{$v->id}}" >发件人:{{$v->nichen}}</a></p>
+                            <p><a href="/show?id={{$v->p_id}}" >发件人:{{$v->nichen}}</a></p>
                             <br>
                             <br>
                             <br>

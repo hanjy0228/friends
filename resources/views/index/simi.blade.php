@@ -8,11 +8,6 @@
             <div class="des">
                 </span>  时间：{{$list->time}}
             </div>
-            @foreach($data as $k=>$v)
-            <div class="des">
-                </span>  作者：{{$v->nichen}}
-            </div>
-            @endforeach
             <div class="oe_casecon">
                 {{$list->content}}
             </div>

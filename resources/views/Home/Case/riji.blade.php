@@ -30,16 +30,10 @@
             <div class="hot_diary">
                 <h3><i>热门日记</i></h3>
                 <ul>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/31.html">好女孩是这样的</a> </li>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/5.html">爱情的领悟</a> </li>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/13.html">关于爱情婚姻</a> </li>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/27.html">爱与不爱都快乐</a> </li>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/24.html">切莫背负感情的债</a> </li>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/33.html">爱的方式</a> </li>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/32.html">真爱一生能有几回</a> </li>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/8.html">珍惜现在拥有的吧!</a> </li>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/9.html">没有爱情会在原地等候</a> </li>
-                    <li><i></i><a target="_blank" href="http://www.wzqsys.com/diary/10.html">感恩可以产生爱情吗？</a> </li>
+                    <li><i></i><a target="_blank" href="show_riji?id=3">婚姻与爱情</a> </li>
+                    <li><i></i><a target="_blank" href="show_riji?id=2">爱情的领悟</a> </li>
+                    <li><i></i><a target="_blank" href="show_riji?id=4">好女孩是这样的</a> </li>
+                    <li><i></i><a target="_blank" href="show_riji?id=5">真爱难得</a> </li>
                 </ul>
             </div>
         </div>

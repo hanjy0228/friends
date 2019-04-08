@@ -47,6 +47,7 @@ Route::group(['namespace'=>'index','prefix'=>'index'],function (){
     Route::any('/see_get_message','SelfController@see_get_message');
     Route::any('/self_get_message','SelfController@self_get_message');
     Route::any('/self_diary','SelfController@self_diary');
+    Route::any('/simi','SelfController@simi');
     Route::any('/self_diary_del','SelfController@self_diary_del');
     Route::any('/self_send_diary','SelfController@self_send_diary');
     Route::any('/self_send_diary_sub','SelfController@self_send_diary_sub');
@@ -54,12 +55,8 @@ Route::group(['namespace'=>'index','prefix'=>'index'],function (){
     Route::any('/upd_state_sub','SelfController@upd_state_sub');
     Route::any('/upd_pass','SelfController@upd_pass');
     Route::any('/upd_pass_sub','SelfController@upd_pass_sub');
-    Route::any('/actives','SelfController@actives');
     Route::any('/char','SelfController@char');
     Route::any('/char_list','SelfController@char_list');
-    Route::any('/chos','SelfController@chos');
-    Route::any('/secoty','SelfController@secoty');
-    Route::any('/secoty_sub','SelfController@secoty_sub');
     Route::any('/comment','SelfController@comment');
     Route::any('/content_sub','SelfController@content_sub');
     Route::any('/zan','SelfController@zan');

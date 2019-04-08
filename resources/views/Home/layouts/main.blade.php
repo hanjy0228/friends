@@ -122,7 +122,7 @@
             <div class="left">欢迎来到牵手一生婚恋</div>
             <div class="right drop">
                 <div class="login">
-                    <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="admin" class="areg">注册</a>
+                    <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="/admin" class="areg">注册</a>
                     <a  rel="nofollow" class="a_2" href="/logout"   class="areg">退出</a>
                 </div>
             </div>
@@ -156,19 +156,7 @@
 </div>
 <div class="oe_footer">
     <div class="oe_footercon">
-        <div class="fast">
-            <h3>快速链接</h3>
-            <ul>
-                <li>网站介绍</li>
-                <li>联系我们</li>
-                <li><a rel="nofollow" href="about/5.html">免责申明</a></li>
-                <li><a rel="nofollow" href="about/6.html">交友须知</a></li>
-                <li><a rel="nofollow" href="about/7.html">隐私保护</a></li>
-                <li><a href="index.php?c=blackuser">黑名单</a></li>
-                <li><a rel="nofollow" href="javascript:;" f="but_safety_addto" style="cursor:pointer;" onclick="artbox_loginbox();"><i></i>投诉/举报</a></li>
-            </ul>
-        </div>
-        <div class="right">
+        <div class="center" style="text-align: center">
             <h3>会员服务</h3>
             红娘客服　　服务热线0953-2287916<br />
             牵手一生婚恋版权所有 &copy; 2010-<span id="footer-copyright-year">2019</span>

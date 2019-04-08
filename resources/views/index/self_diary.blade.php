@@ -169,7 +169,7 @@
                             @endif
                     </dt>
                     <dd>
-                        <h3>{{$v->title}}</h3>
+                        <h3><a href="/index/simi?id={{$v->id}}">{{$v->title}}</a></h3>
                         <h4>
                              发表时间：{{$v->time}}&nbsp;&nbsp;
                             &nbsp;

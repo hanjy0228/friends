@@ -24,17 +24,6 @@
                     <tr>
                         <td colspan="4" style="padding-bottom:10px;"><div class="item_title" style="width:100%"><p>基本资料</p><span class="shadow"></span></div></td>
                     </tr>
-                    <tr>
-                        <td class="lblock">上传照片<span class="f_red">*</span></td>
-                        <td class="rblock">
-                            <input type="file" name="file">
-                            <span class="f_red" id="dmarrystatus"></span>
-                        </td>
-                        <td class="lblock"></td>
-                        <td class="rblock">
-                            <span class="f_red" id="dheight"></span>
-                        </td>
-                    </tr>
                     <!-- 邮箱、名称 -->
                     <tr>
                         <td class="lblock" width="15%">登录邮箱 <span class="f_red"></span></td>
@@ -46,7 +35,7 @@
                     <tr>
                         <td class="lblock">性 别 <span class="f_red"></span></td>
                         <td class="rblock"><font color="#999999">
-                                <?php if($data->sex == 1){ ?>
+                                <?php if($data->sex == 2){ ?>
                                     男
                                 <?php }else{ ?>
                                     女
@@ -55,17 +44,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr>
                         <td class="lblock">学历<span class="f_red"></span></td>
                         <td class="rblock">
-                            <?php if($data->study == 1){ ?>
-                            小学
-                            <?php }else{ ?>
-                            初中
-                            <?php }   ?>
+                            <?php
+                                if ($data->study=1) {
+                                    echo "本科";
+                                } elseif ($data->study=2) {
+                                    echo "硕士";
+                                } else {
+                                     echo "博士";
+                                }
+                            ?>
                         </td>
                         <td class="lblock">户 籍 <span class="f_red"></span></td>
                         <td class="rblock">
@@ -78,10 +67,10 @@
                     <tr>
                         <td class="lblock">婚姻状态 <span class="f_red">*</span></td>
                         <td class="rblock">
-                            <?php if($data->state == 1){ ?>
-                            进行中
+                            <?php if($data->maraystate == 1){ ?>
+                            未婚
                             <?php }else{ ?>
-                            关闭
+                            离异
                             <?php }   ?>
                             <span class="f_red" id="dmarrystatus"></span></td>
                         <td class="lblock">身 高 <span class="f_red">*</span></td>

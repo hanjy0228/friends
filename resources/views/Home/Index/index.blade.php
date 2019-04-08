@@ -21,28 +21,18 @@
 </script>
 
 <div class="oe_newusrer">
-    <div class="inform">
-        @foreach($message_flag as $k => $v)
-            @if($v->state=0)
-            您有新的私信
-                @else
-                @endif
-        @endforeach
-            @foreach($zan_flag as $k => $v)
-                @if($v->state=0)
-                    您有新的点赞
-                @else
-                @endif
-            @endforeach
-            @foreach($comment_flag as $k => $v)
-                @if($v->state=0)
-                    您有新的评论
-                @else
-                @endif
-            @endforeach
-
-        {{--{{$zan_flag}}&&<p>您有新点赞</p>--}}
-        {{--{{$comment_flag}}&&<p>您有新评论</p>--}}
+    <div class="inform" style=" line-height: 32px;background-color: #ff2a7c;color:#fff;border-radius: 10px;">
+        <?php
+        if ($zan_flag!=null) {
+            echo "<p>您有新的赞，快去个人中心看看吧^_^</p>";
+        }
+        if ($message_flag!=null) {
+            echo "<p>您有新的私信，快去个人中心看看吧^_^</p>";
+        }
+        if ($comment_flag!=null) {
+            echo "<p>您有新的评论，快去个人中心看看吧^_^</p>";
+        }
+        ?>
     </div>
     <div class="index_search">
         <em class="dian"></em>

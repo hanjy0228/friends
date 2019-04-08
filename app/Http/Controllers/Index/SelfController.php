@@ -1,7 +1,5 @@
 <?php
 namespace App\Http\Controllers\index;
-
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,11 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class SelfController extends Controller
 {
-    public function __construct(Request $request)
-    {
-
-    }
-
     //个人信息修改
     public function self(Request $request)
     {
@@ -30,7 +23,6 @@ class SelfController extends Controller
 
         return view('index.self', ['data' => $res]);
     }
-
     public function edit_self(Request $request)
     {
 
@@ -46,39 +38,25 @@ class SelfController extends Controller
 
         return view('index.edit_self', ['data' => $res]);
     }
-
     //修改用户信息
     public function upd_user(Request $request)
     {
-
-
-//         echo 11 ;die ;
         $study = $request->post('study');
         $hu = $request->post('hu');
+        $need = $request->post('need');
+        $intor = $request->post('intor');
         $maraystate = $request->post('maraystate');
         $height = $request->post('height');
         $profession = $request->post('profession');
         $money = $request->post('money');
         $id = $request->post('id');
-        if (!empty($file)) {
-            $file = $request->file('file');
-            $name = $file->getClientOriginalExtension();
-            $filename = md5($id) . '.' . $name;
-            $file->move('./uploads', $filename);
-            $res = DB::table('user')->where('id', $id)->update(['study' => $study, 'hu' => $hu, 'maraystate' => $maraystate, 'height' => $height, 'profession' => $profession, 'money' => $money, 'img' => $filename]);
-        } else {
-            $res = DB::table('user')->where('id', $id)->update(['study' => $study, 'hu' => $hu, 'maraystate' => $maraystate, 'height' => $height, 'profession' => $profession, 'money' => $money]);
-        }
-
-
+        $res = DB::table('user')->where('id', $id)->update(['intor'=>$intor,'need'=>$need,'study' => $study, 'hu' => $hu, 'maraystate' => $maraystate, 'height' => $height, 'profession' => $profession, 'money' => $money]);
         if ($res) {
             echo "<script>alert('修改成功');location.href='/index/self'</script>";
         } else {
             echo "<script>alert('出错了');location.href='/index/self'</script>";
         }
-
     }
-
     //个性签名
     public function self_content(Request $request)
     {
@@ -92,7 +70,6 @@ class SelfController extends Controller
         $res = DB::table('user')->where('id', $user->id)->first();
         return view('index.self_content', ['data' => $res]);
     }
-
     public function self_content_upd(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -110,7 +87,6 @@ class SelfController extends Controller
             echo "<script>alert('出错了');location.href='/index/self_content'</script>";
         }
     }
-
     //s收到的私信
     public function self_message(Request $request)
     {
@@ -121,11 +97,10 @@ class SelfController extends Controller
         //session
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
-        $res = DB::table('self_message')->where('to_id', $user->id)->join('user', 'self_message.get_id', '=', 'user.id')->select('self_message.*', 'user.nichen')->get();
+        $res = DB::table('self_message')->where('to_id', $user->id)->join('user', 'self_message.p_id', '=', 'user.id')->select('self_message.*', 'user.nichen')->get();
         $count = $res->count();
         return view('index.self_message', ['data' => $res,'datas'=>$user,'count' => $count]);
     }
-
     public function see_message(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -136,12 +111,11 @@ class SelfController extends Controller
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
         DB::table('self_message')->where('id', $id)->update(['state' => 1]);
-        $res = DB::table('self_message')->where('self_message.id', $id)->join('user', 'self_message.get_id', '=', 'user.id')
+        $res = DB::table('self_message')->where('self_message.id', $id)->join('user', 'self_message.p_id', '=', 'user.id')
             ->select('self_message.*', 'user.nichen')->get();
         return view('index.see_message', ['data' => $res,'datas'=>$user]);
 
     }
-
     public function see_zan(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -172,7 +146,6 @@ class SelfController extends Controller
         return view('index.see_comment', ['data' => $res,'datas'=>$user]);
 
     }
-
     //已经发送的私信
     public function self_get_message(Request $request)
     {
@@ -182,13 +155,13 @@ class SelfController extends Controller
         }
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
-        $res = DB::table('self_message')->where('get_id', $user->id)->join('user', 'self_message.to_id', '=', 'user.id')->select
+        $res = DB::table('self_message')->where('p_id', $user->id)->join('user', 'self_message.to_id', '=', 'user.id')->select
         ('self_message.*', 'user.nichen')->get();
+//        print_r($res);die();
         $count = $res->count();
 
         return view('index.self_get_message', ['data' => $res, 'count' => $count,'datas'=>$user]);
     }
-
     public function see_get_message(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -205,7 +178,6 @@ class SelfController extends Controller
         return view('index.see_get_message', ['data' => $res,'datas'=>$user]);
 
     }
-
     //日记
     public function self_diary(Request $request)
     {
@@ -216,10 +188,20 @@ class SelfController extends Controller
         //session
         $value = $request->session()->get('user');
         $user = DB::table('user')->where('user',$value)->first();
-        $res = DB::table('riji')->where('u_id', $user->id)->get();
+        $res = DB::select("select * from riji where riji.u_id = $user->id ");
         return view('index.self_diary', ['data' => $res,'datas'=>$user]);
     }
-
+    public function simi(Request $request)
+    {
+        if(empty($request->session()->get('user')))
+        {
+            echo "<script>location.href='/login'</script>";
+        }
+        $id=$request->input('id');
+        $data=DB::table('riji')->where('id',$id)->first();
+        $res = DB::select("select * from user inner join riji on (riji.u_id = user.id) and riji.id=$id");
+        return view('index.simi',['list'=>$data,'data'=>$res]);
+    }
     //写日记
     public function self_send_diary(Request $request)
     {
@@ -231,7 +213,6 @@ class SelfController extends Controller
         $user = DB::table('user')->where('user',$value)->first();
         return view('index.self_send_diary',['datas'=>$user]);
     }
-
     public function self_diary_del(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -246,7 +227,6 @@ class SelfController extends Controller
             echo "<script>alert('删除失败');location.href='/index/self_send_diary'</script>";
         }
     }
-
     public function self_send_diary_sub(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -276,7 +256,6 @@ class SelfController extends Controller
             echo "<script>alert('标题已经存在');location.href='/index/self_send_diary'</script>";
         }
     }
-
     //修改状态
     public function upd_state(Request $request)
     {
@@ -348,19 +327,6 @@ class SelfController extends Controller
             echo "<script>alert('出错了');location.href='/index/upd_pass'</script>";
         }
     }
-    public function actives(Request $request)
-    {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        $value = $request->session()->get('user');
-        $user = DB::table('user')->where('user',$value)->first();
-
-        $res = DB::select("select * from chart_list inner join user on user.id=chart_list.u_id  where user.sex != $user->sex");
-
-        return view('index.actives', ['data' => $res]);
-    }
     //进入活动页面
     public function active_index(Request $request)
     {
@@ -379,127 +345,6 @@ class SelfController extends Controller
         }
         return view('index.active_index',['data'=>$res1]);
     }
-    //进入活动
-    public function char(Request $request)
-    {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        $chart = DB::table('chart')->where('state', 1)->where('boy', 4)->where('girl', 4)->select()->first();
-        if (!empty($chart)) {
-            //session
-            $user = DB::table('user')->where('id', '1')->first();
-            $res = DB::table('chart_list')->where('u_id', $user->id)->get()->first();
-            if (!empty($res)) {
-                return 1;
-            } else {
-                return 0;
-            }
-        } else {
-            return 1;
-        }
-    }
-    //活动报名
-    public function char_list(Request $request)
-    {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        //session
-        $value = $request->session()->get('user');
-        $user = DB::table('user')->where('user',$value)->first();
-        $res = DB::table('chart_list')->where('u_id', $user->id)->get()->first();
-        if (empty($res)) {
-            $u_id = DB::table('chart_list')->where('u_id', 0)->get()->first();
-            $res = DB::table('chart_list')->where('id', $u_id->id)->update(['u_id' => $user->id]);
-            $sex = DB::table('chart')->where('id', 1)->get()->first();
-            $boy = $sex->boy;
-            $boy = (int)$boy + 1;
-            $girl = $sex->girl + 1;
-            if ($res && $user->sex == 1) {
-                DB::table('chart')->where('id', 1)->update(['boy' => $boy]);
-            } else {
-                DB::table('chart')->where('id', 1)->update(['girl' => $girl]);
-            }
-            return 1;
-        } else {
-            return 0;
-
-        }
-    }
-    //选择缘分
-    public function chos(Request $request)
-    {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        //session
-        $value = $request->session()->get('user');
-        $user = DB::table('user')->where('user',$value)->first();
-        $id = $request->get('id');
-
-        $list = DB::table('chart_list')->where('u_id', $user->id)->where('w_id', '0')->get()->first();
-
-        if (!empty($list)) {
-            $res = DB::table('chart_list')->where('u_id', $user->id)->update(['w_id' => $id]);
-            $tu = DB::table('chart_list')->pluck('w_id')->toarray();
-            if(!in_array(0,$tu)){
-                    $chart = DB::table('chart_lsit')->get();
-                    foreach ($chart as $k => $v)
-                    {
-                       foreach ($chart as $k1 => $v1)
-                       {
-                           if($v->w_id == $v1->u_id)
-                           {
-                               if($v->u_id == $v1->w_id)
-                               {
-                                   DB::table('my_success')->insert(['my_id'=>$v->u_id,'u_id'=>$v->w_id]);
-                               }
-                           }
-                       }
-                    }
-                    DB::table('chart')->where('id',1)->update(['boy'=>0,'girl'=>0]);
-                        $data = DB::table('chart_list')->get();
-                        foreach ($data as $ms)
-                        {
-                            DB::table('chart_list')->where('id',$ms->id)->update(['u_id'=>0,'w_id'=>0]);
-                        }
-
-            } ;
-            echo "<script>alert('选择成功，等待缘分吧');location.href='/index/active_index'</script>";
-        } else {
-            echo "<script>alert('已经选择过了');location.href='/index/active_index'</script>";
-        }
-    }
-    //匿名小纸条
-    public function secoty(Request $request)
-    {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        $id = $request->get('id');
-        return view('index.secoty',['id'=>$id]);
-    }
-    public function secoty_sub(Request $request)
-    {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        $id = $request->post('id');
-        $content = $request->post('content');
-        $res = DB::table('secoty')->insert(['u_id'=>$id,'content'=>$content]);
-        if(!empty($res))
-        {
-            echo "<script>alert('发送成功');location.href='/index/actives'</script>";
-        }else{
-            echo "<script>alert('发送失败');location.href='/index/actives'</script>";
-        }
-    }
     public function comment(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -511,7 +356,7 @@ class SelfController extends Controller
         $id=$user->id;
 //        $id=$request->input('id');
 //        $comm = DB::select("select * from comment inner join user on comment.u_id = user.id") ;
-        $comm = DB::select("select * from comment where comment.p_id =  $id") ;
+        $comm= DB::select("select * from comment inner join user on (comment.u_id = user.id) and comment.p_id=$id") ;
 //                print_r($comm);die;
         return view('index.comment',['data'=>$user,'comm'=>$comm]);
     }

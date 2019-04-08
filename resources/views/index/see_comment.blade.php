@@ -293,7 +293,7 @@
             <div class="left">欢迎来到牵手一生婚恋</div>
             <div class="right drop">
                 <div class="login">
-                    <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="admin" class="areg">注册</a>
+                    <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="/admin" class="areg">注册</a>
                     <a  rel="nofollow" class="a_2" href="/logout"   class="areg">退出</a>
                 </div>
             </div>
@@ -394,7 +394,7 @@
                 <table class="table">
                     <tbody>
                         @foreach($data as $k => $v)
-                            <p>评论人:<a href="/show?id={{$v->id}}" >{{$v->nichen}}</a></p>
+                            <p>评论人:<a href="/show?id={{$v->u_id}}" >{{$v->nichen}}</a></p>
                             <br>
                             <br>
                             <br>

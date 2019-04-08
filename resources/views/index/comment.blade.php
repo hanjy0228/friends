@@ -14,7 +14,7 @@
                 <dt>
                     <span><img src="/uploads/{{$v->img}}"></span>
                     <h3>
-                    <a href="/show?id={{$v->id}}" >{{$v->nichen}}</a>
+                    <a href="/show?id={{$v->u_id}}" >{{$v->nichen}}</a>
                     &nbsp;&nbsp;
                     @if($v->state==0)
                         未查看
@@ -41,7 +41,6 @@
                     </div>
                 </div>
                 <!--//weibo-left End-->
-
         </div>
 
 

@@ -338,14 +338,6 @@
                 return false;
             }
 
-            //交友类型
-            t = "lovesort";
-            v = $("#"+t).val();
-            if(v=="") {
-                dmsg("请选择交友类别", t);
-                return false;
-            }
-
             //月薪
             t = "salary";
             v = $("#"+t).val();

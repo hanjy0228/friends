@@ -14,13 +14,14 @@
             </h3>
             <ul>
                 <li><label>用户名：</label> <b>{{$data->nichen}} </b> </li>
+                <li><label>内心独白：</label> {{$data->produce}}  </li>
                 <li><label>征友状态：</label>@if($data->state==1)
                         进行中
                     @else
                         已关闭
                     @endif</li>
                 <li><label>性别：</label><span class="certiconph">
-                        @if($data->sex==1)
+                        @if($data->sex==2)
                             男
                         @else
                             女

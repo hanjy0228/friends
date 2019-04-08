@@ -284,7 +284,7 @@
                                 已查看
                                 @endif
                         </td>
-                        <td width="60%"><a href="/show?id={{$v->id}}" >发件人:{{$v->nichen}}</a></td>
+                        <td width="60%"><a href="/show?id={{$v->p_id}}" >{{$v->nichen}}</a></td>
                         <td><a href="/index/see_message?id={{$v->id}}">查看</a></td>
                         <td width="15%">{{$v->time}}</td>
                     </tr>

@@ -396,9 +396,7 @@
                 <input type="hidden" name="a" id="a" value="">
                 <table class="table">
                     <tbody><tr>
-
                         <td width="60%">收件人</td>
-
                         <td>查看</td>
                         <td width="10%"></td>
                         <td width="15%">时间</td>
@@ -407,7 +405,7 @@
                     @foreach($data as $k => $v)
                     <tr>
 
-                        <td width="60%"><a href="/show?id={{$v->id}}" >发件人:{{$v->nichen}}</a></td>
+                        <td width="60%"><a href="/show?id={{$v->r_id}}" >{{$v->nichen}}</a></td>
 
                         <td><a href="/index/see_get_message?id={{$v->id}}">查看</a></td>
                         <td width="10%"></td>

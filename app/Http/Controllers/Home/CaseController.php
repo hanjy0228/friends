@@ -30,16 +30,15 @@ class CaseController extends Controller{
         {
             echo "<script>location.href='/login'</script>";
         }
-        $res = DB::select("select * from riji inner join user on riji.u_id = user.id where riji.state=1");
-
+        $res = DB::select("select * from user inner join riji on (riji.u_id = user.id) and riji.state=1");
         return view('home.case.riji',['data'=>$res,]);
     }
     public function show_riji(Request $request)
     {
         $id=$request->input('id');
         $data=DB::table('riji')->where('id',$id)->first();
-//        print_r($id);die();
-        return view('home.case.show_riji',['list'=>$data]);
+        $res = DB::select("select * from user inner join riji on (riji.u_id = user.id) and riji.state=1 and riji.id=$id");
+        return view('home.case.show_riji',['list'=>$data,'data'=>$res]);
     }
     public function active(Request $request)
     {

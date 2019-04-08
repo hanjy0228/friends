@@ -393,7 +393,7 @@
                     <tbody>
                         @foreach($data as $k => $v)
                             <div class="nav-tips">
-                                <p style="text-align: center;">点赞人: <a href="/show?id={{$v->id}}" >{{$v->nichen}}</a></p>
+                                <p style="text-align: center;">点赞人: <a href="/show?id={{$v->p_id}}" >{{$v->p_nichen}}</a></p>
                                <p  style="text-align: center; color: #c7254e">快去他的主页瞧一瞧吧！</p>
                             </div>
 

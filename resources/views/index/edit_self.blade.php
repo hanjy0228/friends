@@ -24,18 +24,6 @@
                     <tr>
                         <td colspan="4" style="padding-bottom:10px;"><div class="item_title" style="width:100%"><p>基本资料</p><span class="shadow"></span></div></td>
                     </tr>
-                    <tr>
-
-                        <td class="lblock">上传照片<span class="f_red">*</span></td>
-                        <td class="rblock">
-                            <input type="file" name="file">
-                            <span class="f_red" id="dmarrystatus"></span>
-                        </td>
-                        <td class="lblock"></td>
-                        <td class="rblock">
-                            <span class="f_red" id="dheight"></span>
-                        </td>
-                    </tr>
                     <!-- 邮箱、名称 -->
                     <tr>
                         <td class="lblock" width="15%">登录邮箱 <span class="f_red"></span></td>
@@ -47,7 +35,7 @@
                     <tr>
                         <td class="lblock">性 别 <span class="f_red"></span></td>
                         <td class="rblock"><font color="#999999">
-                                <?php if($data->sex == 1){ ?>
+                                <?php if($data->sex == 2){ ?>
                                     男
                                 <?php }else{ ?>
                                     女
@@ -64,10 +52,9 @@
                         <td class="rblock">
                             <select name="study">
                                 <option value="">=请选择=</option>
-                                <option value="1">高中</option>
-                                <option value="2">大学</option>
-                                <option value="3">本科</option>
-                                <option value="4">其他</option>
+                                <option value="1">本科</option>
+                                <option value="2">硕士</option>
+                                <option value="3">博士</option>
                             </select>
                         </td>
                         <td class="lblock">户 籍 <span class="f_red"></span></td>
@@ -122,8 +109,7 @@
                             <select name="maraystate" id="marrystatus">
                                 <option value="">=请选择=</option>
                                 <option value="1" >未婚</option>
-                                <option value="2">已婚</option>
-                                <option value="3">离异</option>
+                                <option value="2">离异</option>
                             </select>
                             <span class="f_red" id="dmarrystatus"></span></td>
                         <td class="lblock">身 高 <span class="f_red">*</span></td>
@@ -137,11 +123,6 @@
                         <td class="rblock">
                             <input type="text"id="need"name="need" style="width: 200px;height: 70px;margin-top: 10px;">
                             <span class="f_red" id="dneed"></span></td>
-                        {{--<td class="lblock">择偶要求 <span class="f_red">*</span></td>--}}
-                        {{--<td class="rblock">--}}
-                            {{--<textarea type="text"id="need"name="need" style="width: 200px;height: 70px;margin-top: 10px;"></textarea>--}}
-                            {{--<span class="f_red" id="dneed"></span>--}}
-                        {{--</td>--}}
                         <td class="lblock">自我评价 <span class="f_red">*</span></td>
                         <td class="rblock">
                             <input type="text" id="intor" name="intor" style="width: 200px;height: 70px;margin-top: 10px;">
@@ -209,8 +190,6 @@
                         </td>
                     </tr>
                     <!-- 住房、购车 -->
-
-                   
                     <!-- 提交按钮 -->
                     <tr>
                         <td class="lblock" height="50px"></td>

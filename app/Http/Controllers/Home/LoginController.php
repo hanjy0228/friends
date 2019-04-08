@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Contracts\Support\Facades\Storage;
+//use Illuminate\Contracts\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Model\Login;
 class LoginController extends Controller{
@@ -32,16 +32,6 @@ class LoginController extends Controller{
     // 注册
     public function Admin(Request $request){
         if($request->isMethod('post')){
-            $files=$request->file("img");
-            if($files){
-                $oragnalName=$files->getClientOriginalName();
-                $ext=$files->getClientOriginalExtension();
-                $type=$files->getClientMimeType();
-                $realPath=$files->getRealPath();
-                $file_new_name=date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
-                $bool=Storage::disk('uploads')->put($file_new_name,file_get_contents($realPath));
-                var_dump($bool);exit;
-            }
             $data=$request->all();
             unset($data['_token']);
             unset($data['pass1']);
@@ -63,10 +53,9 @@ class LoginController extends Controller{
         $user=$request->session()->get('user');
         $id=DB::table('user')->where('user',$user)->value('id');
         $sex=DB::table('user')->where('user',$user)->value('sex');
-        $message_flag=DB::select("select * from self_message where self_message.get_id=$id") ;
-        $comment_flag=DB::select("select * from comment where comment.u_id=$id") ;
-        $zan_flag=DB::select("select * from zan where zan.u_id=$id") ;
-
+        $message_flag=DB::select("select * from self_message where self_message.p_id=$id and self_message.state=0") ;
+        $comment_flag=DB::select("select *  from comment where comment.u_id=$id and comment.state=0") ;
+        $zan_flag=DB::select("select * from zan where zan.u_id=$id and zan.state=0") ;
         //推荐
         if($sex==1){
             $data=DB::select("select * from user where user.sex=2 and user.intor=(select need from user where user.id=$id)") ;
@@ -110,7 +99,7 @@ class LoginController extends Controller{
             $data1=DB::table('story')->get();
             $user=$request->session()->get('user');
             $id=DB::table('user')->where('user',$user)->value('id');
-            $message_flag=DB::select("select * from self_message where self_message.get_id=$id") ;
+            $message_flag=DB::select("select * from self_message where self_message.p_id=$id") ;
             $comment_flag=DB::select("select * from comment where comment.u_id=$id") ;
             $zan_flag=DB::select("select * from zan where zan.u_id=$id") ;
             return view('home.index.index',['list'=>$data,'zan_flag'=>$zan_flag,'arr'=>$data1,'message_flag'=>$message_flag,'comment_flag'=>$comment_flag]);
@@ -121,9 +110,7 @@ class LoginController extends Controller{
         $id=$request->input('id');
         $request->session()->put('id',$id);
         $data=DB::table('user')->where('id',$id)->first();
-//        $comm = DB::select("select * from comment inner join user on comment.p_id = user.id") ;
-        $comm = DB::select("select * from comment where comment.p_id = $id") ;
-//        print_r(user.id);die;
+        $comm= DB::select("select * from comment inner join user on (comment.u_id = user.id) and comment.p_id=$id") ;
         return view('home.index.show',['data'=>$data,'comm'=>$comm]);
     }
     public function content_sub(Request $request)
@@ -156,9 +143,9 @@ class LoginController extends Controller{
                 echo "<script>alert('不能为空');location.href='si';</script>";
             }
             $time=date('Y-m-d');
-            print_r($time);die();
+//            print_r($time);die();
             $u_id=DB::table('user')->where('user',$user)->value('id');
-            $res=DB::table('self_message')->insert(['content'=>$content,'to_id'=>$id,'get_id'=>$u_id,'time'=>$time]);
+            $res=DB::table('self_message')->insert(['content'=>$content,'to_id'=>$id,'p_id'=>$u_id,'time'=>$time]);
             if($res){
                 echo "<script>alert('发送成功');location.href='.';</script>";
             }else{
@@ -177,9 +164,7 @@ class LoginController extends Controller{
             $zan=$zan+1;
             $p_nichen= DB::table('user')->where('user', $user)->value('nichen');
             $zaned=DB::select("select u_id from zan where zan.u_id =$u_id and zan.p_id=$id") ;
-            if($zaned){
-                echo "<script>alert('您已经点赞过，请勿重复点赞');location.href='.'</script>";
-            } else {
+
                 $resZan = DB::table('zan')->insert([ 'p_id' => $id, 'u_id' => $u_id,'p_nichen'=>$p_nichen]);
                 $resUser=DB::table('user')->where('id',$id)->update(['zan'=>$zan]);
                 if ($resZan&&$resUser) {
@@ -188,5 +173,5 @@ class LoginController extends Controller{
             }
 
         }
-    }
+
 }
