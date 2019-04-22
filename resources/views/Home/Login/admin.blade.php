@@ -2,11 +2,11 @@
 
 @section('content')
 <style type="text/css">
-    body{background:#EDEFF5;}
+    body{background:#fff;}
 </style>
-<div class="ce_reg">
+<div class="ce_reg" >
     <div class="left">
-        <div class="reg_left_title">
+        <div class="reg_left_title" style="margin-top: -20px">
             <h1>30秒免费注册， 开启您的择友之旅~</h1>
         </div>
         <form method="post" action="admin"/>
@@ -39,7 +39,7 @@
             <div class="bitian">
                 <div id="div_gender" class="form_li">
                     <label><font color="red">*</font>  您的性别：</label>
-                    <input type='radio' name='sex' id='gender' value='1' checked />男， <input type='radio' name='sex' id='gender' value='2' />女 <span id='dgender' class='f_red'></span> <font color='#999999'>(一旦选择不能修改)</font>
+                    <input type='radio' name='sex' id='gender' value='2' checked />男， <input type='radio' name='sex' id='gender' value='1' />女 <span id='dgender' class='f_red'></span> <font color='#999999'>(一旦选择不能修改)</font>
                 </div>
                 <div id="div_birthday" class="form_li">
                     <label><font color="red">*</font> 年龄：</label>
@@ -86,10 +86,9 @@
                         <option value="国外">国外</option>
                     </select>&nbsp;<span id="dnationprovinceid" class="f_red">
                 </div>
-
-                <div id="div_study" class="form_li">
+                <div id="div_xueli" class="form_li">
                     <label><font color="red">*</font> 学历：</label>
-                    <select name="study " id="study">
+                    <select name="study" id="study">
                         <option value="">=请选择=</option>
                         <option value="1">本科</option>
                         <option value="2">硕士</option>
@@ -116,9 +115,9 @@
                     <label><font color="red">*</font> 自我评价：</label>
                     <input type="textarea"id="intor" name="intor" style="border:1px solid #e0e0e0;width:250px;height:30px;"/>
                 </div>
-                <div id="div_intor" class="form_li">
+                <div id="div_produce" class="form_li">
                     <label><font color="red">*</font> 内心独白：</label>
-                    <input type="textarea"id="produce" name="intor" style="border:1px solid #e0e0e0;width:250px;height:30px;"/>
+                    <input type="textarea"id="produce" name="produce" style="border:1px solid #e0e0e0;width:250px;height:30px;"/>
                 </div>
                 <div id="div_profession" class="form_li">
                     <label><font color="red">*</font> 职业：</label>
@@ -177,7 +176,6 @@
                         <option value="10000~20000元">10000~20000元</option>
                         <option value="20000元以上">20000元以上</option></select>
                 </div>
-                <div id="div_intor" class="form_li">
             </div>
             <div class="form_li">
                 <div class="tijiao">
@@ -222,8 +220,8 @@
         </ul>
 
     </div>
-    <div style="clear:both;"></div>
 </div>
+<div style="clear:both;"></div>
 @stop
 <script language="javascript">
     function checkreg(){
