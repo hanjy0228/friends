@@ -44,7 +44,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="lblock">学历<span class="f_red"></span></td>
+                        <td class="lblock">学历<span class="f_red">*</span></td>
                         <td class="rblock">
                             <?php
                                 if ($data->study=1) {
@@ -56,11 +56,9 @@
                                 }
                             ?>
                         </td>
-                        <td class="lblock">户 籍 <span class="f_red"></span></td>
+                        <td class="lblock">户 籍 <span class="f_red">*</span></td>
                         <td class="rblock">
                             <?php echo $data->hu ;?>
-                            <span id="json_nationcityid">
-			</span>&nbsp;<span id="dnationcityid" class="f_red"></span>
                         </td>
                     </tr>
                     <!-- 婚姻、身高 -->
@@ -72,7 +70,6 @@
                             <?php }else{ ?>
                             离异
                             <?php }   ?>
-                            <span class="f_red" id="dmarrystatus"></span></td>
                         <td class="lblock">身 高 <span class="f_red">*</span></td>
                         <td class="rblock">
                             <?php echo $data->height ;?><span class="f_red" id="dheight"></span>
@@ -89,7 +86,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="lblock">职 业 <span class="f_red"></span></td>
+                        <td class="lblock">职 业 <span class="f_red">*</span></td>
                         <td class="rblock">
                             <?php echo $data->profession ;?><span class="f_red" id="dheight"></span>
                         </td>
@@ -98,9 +95,6 @@
                             <?php echo $data->money ;?><span class="f_red" id="dheight"></span>
                         </td>
                     </tr>
-                    <!-- 住房、购车 -->
-
-                   
                     <!-- 提交按钮 -->
                     <tr>
                         <td class="lblock" height="50px"></td>

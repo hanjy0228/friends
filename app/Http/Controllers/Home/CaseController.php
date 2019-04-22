@@ -11,7 +11,7 @@ class CaseController extends Controller{
     public function Case(Request $request){
         if(empty($request->session()->get('user')))
         {
-            echo "<script>location.href='/login'</script>";
+            echo "<script>alert('请登陆');location.href='/login'</script>";
         }
         $data=DB::table('story')->get();
         //print_r($data[0]->title);die;
@@ -27,7 +27,7 @@ class CaseController extends Controller{
     {
         if(empty($request->session()->get('user')))
         {
-            echo "<script>location.href='/login'</script>";
+            echo "<script>alert('请登陆');location.href='/login'</script>";
         }
         $res = DB::select("select * from user inner join riji on (riji.u_id = user.id) and riji.state=1");
         return view('home.case.riji',['data'=>$res,]);
@@ -43,7 +43,7 @@ class CaseController extends Controller{
     {
         if(empty($request->session()->get('user')))
         {
-            echo "<script>location.href='/login'</script>";
+            echo "<script>alert('请登陆');location.href='/login'</script>";
         }
         $data=DB::table('active')->get();
         return view('home.case.active',['list'=>$data]);

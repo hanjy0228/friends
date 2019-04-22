@@ -47,16 +47,16 @@
                         <td> </td>
                     </tr>
                     <tr>
-                        <td class="lblock">学历<span class="f_red"></span></td>
+                        <td class="lblock">学历<span class="f_red">*</span></td>
                         <td class="rblock">
-                            <select name="study">
+                            <select id="study" name="study">
                                 <option value="">=请选择=</option>
                                 <option value="1">本科</option>
                                 <option value="2">硕士</option>
                                 <option value="3">博士</option>
                             </select>
                         </td>
-                        <td class="lblock">户 籍 <span class="f_red"></span></td>
+                        <td class="lblock">户 籍 <span class="f_red">*</span></td>
                         <td class="rblock">
                             <select name="hu" id="nationprovinceid" onchange="fetch_hometown(&#39;nationprovinceid&#39;, &#39;nationcityid&#39;, &#39;0&#39;, &#39;=请选择=&#39;);">
                                 <option value="">=请选择=</option>
@@ -97,8 +97,6 @@
                                 <option value="国外">国外</option>
                             </select>&nbsp;<span id="dnationprovinceid" class="f_red">
                             </span>
-                            <span id="json_nationcityid">
-			</span>&nbsp;<span id="dnationcityid" class="f_red"></span>
                         </td>
                     </tr>
                     <!-- 婚姻、身高 -->
@@ -110,11 +108,9 @@
                                 <option value="1" >未婚</option>
                                 <option value="2">离异</option>
                             </select>
-                            <span class="f_red" id="dmarrystatus"></span></td>
                         <td class="lblock">身 高 <span class="f_red">*</span></td>
                         <td class="rblock">
-                            <input type="text"  name="height" style="width: 50px;"> cm
-                            <span class="f_red" id="dheight"></span>
+                            <input type="text"   id="height" name="height" style="width: 50px;"> cm
                         </td>
                     </tr>
                     <tr>
@@ -129,7 +125,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="lblock">职 业 <span class="f_red"></span></td>
+                        <td class="lblock">职 业 <span class="f_red">*</span></td>
                         <td class="rblock"><select name="profession" id="jobs">
                                 <option value="">=请选择=</option>
                                 <option value="在校学生">在校学生</option>

@@ -32,7 +32,7 @@
                     <!-- 字数统计 -->
                     <tr>
                         <td class="lblock"></td>
-                        <td class="rblock">限20 ~ 1500个字<strong id="counter"></strong></td>
+                        <td class="rblock">限6 ~ 20个字<strong id="counter"></strong></td>
                     </tr>
                     <tr>
                         <td class="lblock"></td>
@@ -43,7 +43,7 @@
                     <!-- 温馨提示 -->
                     <tr>
                         <td class="rblock" colspan="2" align="left">
-                            温馨提示：<br>1、内心独白字数需在20 ~ 1500个字之内；<br>2、内心独白中请勿出现QQ、微信、电话号码以及网址、广告、色情或其他不健康的内容；<br>3、修改保存后，我们将进行审核，通过了才能显示在个人资料页面。
+                            温馨提示：<br>1、内心独白字数需在6 ~ 20个字之内；<br>2、内心独白中请勿出现广告、色情或其他不健康的内容；
                         </td>
                     </tr>
                     </tbody></table>

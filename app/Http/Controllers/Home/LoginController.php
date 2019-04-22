@@ -26,7 +26,7 @@ class LoginController extends Controller{
     }
     public function Logout(Request $request){
         $request->session()->flush();
-        echo "<script>location.href='login'</script>";
+        echo "<script>alert('已退出，请重新登陆');location.href='login'</script>";
         return view('home.login.logout');
     }
     // 注册
@@ -48,7 +48,7 @@ class LoginController extends Controller{
     public function Index(Request $request){
         if(empty($request->session()->get('user')))
         {
-            echo "<script>location.href='/login'</script>";
+            echo "<script>alert('请登陆');location.href='/login'</script>";
         }
         $user=$request->session()->get('user');
         $id=DB::table('user')->where('user',$user)->value('id');

@@ -13,7 +13,7 @@ class SelfController extends Controller
 
         if(empty($request->session()->get('user')))
         {
-            echo "<script>location.href='/login'</script>";
+            echo "<script>alert('请登陆');location.href='/login'</script>";
         }
         $value = $request->session()->get('user');
 
@@ -294,16 +294,29 @@ class SelfController extends Controller
         $newpass = $request->post('newpass');
         $confirmpass = $request->post('confirmpass');
         $user = DB::table('user')->where('id', $id)->first();
+        $flag=true;
         if ($user->pass != $oldpass) {
+            $flag=false;
             echo "<script>alert('原始密码不正确');location.href='/index/upd_pass'</script>";
         }
+        if ($user->pass == $newpass) {
+            $flag=false;
+            echo "<script>alert('与原密码相同密码,请重新输入');location.href='/index/upd_pass'</script>";
+        }
         if (empty($oldpass) || empty($newpass) || empty($confirmpass)) {
+            $flag=false;
             echo "<script>alert('不能为空,请重新输入');location.href='/index/upd_pass'</script>";
         }
+//        if (strlen($newpass)<6 || strlen($newpass)>16) {
+//            $flag=false;
+//            echo "<script>alert('密码长度为6-16，,请重新输入');location.href='/index/upd_pass'</script>";
+//        }
         if ($newpass != $confirmpass) {
+            $flag=false;
             echo "<script>alert('两次密码不同');location.href='/index/upd_pass'</script>";
         }
-        $res = DB::table('user')->where('id', $id)->update(['pass' => $newpass]);
+        if(  $flag==true){
+        $res = DB::table('user')->where('id', $id)->update(['pass' => $newpass]);}
         if ($res) {
             echo "<script>alert('修改成功');location.href='/index/upd_pass'</script>";
         } else {

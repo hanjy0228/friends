@@ -30,111 +30,6 @@
         DD_belatedPNG.fix('.user_logo, .shadow');
     </script>
     <![endif]-->
-    <script type="text/javascript">
-        //发表心情
-        function obj_public_mood(content_id) {
-            var content = $("#"+content_id).val();
-            //心情内容
-            if (content == '' || content == '记录每一天的心情...') {
-                $.dialog({
-                    lock:true,
-                    title: '错误提示',
-                    content: '请填写心情内容',
-                    icon: 'error',
-                    button: [
-                        {
-                            name: '确定'
-                        }
-                    ]
-                });
-                return false;
-            }
-            if (strQuantity(content) > 500) {
-                $.dialog({
-                    lock:true,
-                    title: '错误提示',
-                    content: '心情内容不能大于500个字',
-                    icon: 'error',
-                    button: [
-                        {
-                            name: '确定'
-                        }
-                    ]
-                });
-                return false;
-            }
-
-            //发表心情
-            $.ajax({
-                type: "POST",
-                url: _ROOT_PATH + "usercp.php?c=weibo",
-                cache: false,
-                data: {a:"saveweibo", content:content, r:get_rndnum(8)},
-                dataType: "json",
-                success: function(data) {
-                    var json = eval(data);
-                    var response = json.response;
-                    var msg = json.msg;
-                    if (response == '1') {
-                        var tips = "";
-                        if (msg.length > 0) {
-                            tips = msg;
-                        }
-                        else {
-                            tips = "发表成功";
-                        }
-                        $.dialog({
-                            lock:true,
-                            title: '成功提示',
-                            content: tips,
-                            icon: 'succeed',
-                            button: [
-                                {
-                                    name: '确定',
-                                    callback: function () {
-                                        window.top.location.reload();
-                                    }
-                                }
-                            ]
-                        });
-                    }
-                    else {
-                        var tips = "";
-                        if (msg.length > 0) {
-                            tips = msg;
-                        }
-                        else {
-                            tips = "发表失败";
-                        }
-                        $.dialog.tips(tips, 3);
-                    }
-                },
-                error: function() {
-
-                }
-            });
-
-        }
-        //心情文本框
-        function obj_del_wbcontent(content_id) {
-            var content = $("#"+content_id).val();
-            if (content == '记录每一天的心情...') {
-                $("#"+content_id).val("");
-            }
-        }
-        function obj_attr_wbcontent(content_id) {
-            var content = $("#"+content_id).val();
-            if (content == '') {
-                $("#title").val("记录每一天的心情...");
-            }
-        }
-        function obj_cancel_wbcontent(content_id) {
-            var content = $("#"+content_id).val();
-            if (content != '记录每一天的心情...') {
-                $("#"+content_id).val("记录每一天的心情...");
-            }
-        }
-    </script>
 </head>
 <body><div class="" style="display: none; position: absolute;"><div class="aui_outer"><table class="aui_border"><tbody><tr><td class="aui_w"></td><td class="aui_c"><div class="aui_inner"><table class="aui_dialog"><tbody><tr><td colspan="2" class="aui_header"><div class="aui_titleBar"><div class="aui_title" style="cursor: move;"></div><a class="aui_close" href="http://www.wzqsys.com/usercp.php?c=profile###">×</a></div></td></tr><tr><td class="aui_icon" style="display: none;"><div class="aui_iconBg" style="background: none;"></div></td><td class="aui_main" style="width: auto; height: auto;"><div class="aui_content" style="padding: 20px 25px;"></div></td></tr><tr><td colspan="2" class="aui_footer"><div class="aui_buttons" style="display: none;"></div></td></tr></tbody></table></div></td><td class="aui_e"></td></tr><tr style="display:none;"><td class="aui_sw"></td><td class="aui_s"></td><td class="aui_se" style="cursor: se-resize;"></td></tr></tbody></table></div></div>
 
@@ -146,6 +41,7 @@
             <div class="right drop">
                 <div class="login">
                     <a class="a_1" href="login" onclick="artbox_loginbox();" class="alogin"  rel="nofollow">登录</a><a  rel="nofollow" class="a_2" href="admin" class="areg">注册</a>
+                    <a  rel="nofollow" class="a_2" href="/logout"   class="areg">退出</a>
                 </div>
             </div>
             <div class="clear"></div>
@@ -179,10 +75,6 @@
                 <dl>
                     <dt>
                         <a href="/show?id={{$data->id}}"><img src="/uploads/{{$data->img}}" title="设置头像"></a>
-
-
-
-
                     </dt>
                     <dd>
                         <h2><img src="/index/img/f2fde8e7d8aa2a10.gif" border="0" class="">{{$data->nichen}}</h2>
@@ -437,8 +329,8 @@
                 return false;
             }
             else {
-                if (strQuantity(v)<20 || strQuantity(v)>1500) {
-                    dmsg("内心独白字数必须在20~1500个字之间", t);
+                if (strQuantity(v)<6 || strQuantity(v)>20) {
+                    dmsg("内心独白字数必须在6~20个字之间", t);
                     $('#'+t).focus();
                     return false;
                 }

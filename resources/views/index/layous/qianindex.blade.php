@@ -270,10 +270,31 @@
                 return false;
             }
 
+            t = "study";
+            v = $("#"+t).val();
+            if(v=="") {
+                dmsg("请选择学历", t);
+                return false;
+            }
+
+            t = "nationprovinceid";
+            v = $("#"+t).val();
+            if(v=="") {
+                dmsg("请选择户籍", t);
+                return false;
+            }
+
+            t = "jobs";
+            v = $("#"+t).val();
+            if(v=="") {
+                dmsg("请选择职业", t);
+                return false;
+            }
+
             t = "height";
             v = $("#"+t).val();
             if(v=="") {
-                dmsg("请选择身高", t);
+                dmsg("请输入身高", t);
                 return false;
             }
 
@@ -288,21 +309,6 @@
             v = $("#"+t).val();
             if(v=="") {
                 dmsg("请输入自我评价", t);
-                return false;
-            }
-
-            //所在地区
-            t = "provinceid";
-            v = $("#"+t).val();
-            if(v=="") {
-                dmsg("请选择所在地区", t);
-                return false;
-            }
-            //所在地区
-            t = "cityid";
-            v = $("#"+t).val();
-            if(v=="") {
-                dmsg("请选择所在地区", t);
                 return false;
             }
 
@@ -331,8 +337,8 @@
                 return false;
             }
             else {
-                if (strQuantity(v)<20 || strQuantity(v)>1500) {
-                    dmsg("内心独白字数必须在20~1500个字之间", t);
+                if (strQuantity(v)<6 || strQuantity(v)>20) {
+                    dmsg("内心独白字数必须在6~20个字之间", t);
                     $('#'+t).focus();
                     return false;
                 }
