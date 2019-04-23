@@ -143,7 +143,7 @@
             <div class="div_smallnav_content_hover" style="height: 472px;">
 
 
-                <form name="myform" id="myformpass" action="upd_pass_sub" method="post">
+                <form name="myform" id="myform" action="upd_pass_sub" method="post">
                     <table cellpadding="0" cellspacing="0" border="0" width="98%" class="user-table table-margin lh35">
                         <tbody><tr>
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -158,7 +158,7 @@
                         <!-- 新密码 -->
                         <tr>
                             <td class="lblock">新 密 码 <span class="f_red">*</span></td>
-                            <td class="rblock"><input type="password" name="newpass" id="newpassword" class="input-150" maxlength="16"> <span id="dnewpassword" class="f_red"></span> (6-16个字符)</td>
+                            <td class="rblock"><input type="password" name="newpass" id="newpassword" class="input-150" maxlength="16"> <span id="dnewpassword" class="f_red"></span> (至少6个字符)</td>
                         </tr>
                         <!-- 确认新密码 -->
                         <tr>
@@ -262,24 +262,32 @@
         }
     </style>
     <script type="text/javascript">
-        function checkmonolog() {
-           t = "newpassword";
-v = $("#"+t).val();
-else {
-    if(v.length<6) {
-        alert('密码长度不对');
-        $('#'+t).focus();
-        return false;
-    }
+        function checkform(){
+            var t = "";
+            var v = "";
 
-    if($('#confirmpassword').val() != v) {
-        alert("确认密码不正确");
-        $('#confirmpassword').focus();
-        return false;
-    }
-}
+            t = "newpassword";
+            v = $("#"+t).val();
+            if(v=="") {
+                alert("密码不能为空");
+                $('#'+t).focus();
+                return false;
+            }
+            else {
+                if(v.length<6) {
+                    alert('密码长度不对');
+                    $('#'+t).focus();
+                    return false;
+                }
 
-            $('#myformpass').submit();
+                if($('#confirmpassword').val() != v) {
+                    alert("确认密码不正确");
+                    $('#confirmpassword').focus();
+                    return false;
+                }
+            }
+
+            $('#register_form').submit();
             return true;
         }
 
