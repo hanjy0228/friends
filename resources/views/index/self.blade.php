@@ -1,9 +1,6 @@
 @extends('index.layous.qianindex')
 
 @section('content')
-
-    <!--//user_main_left End-->
-
     <div class="main_right">
         <div class="oe_tab_nv">
             <ul>
@@ -108,15 +105,8 @@
 
         </div>
         <div class="clear"></div>
-        <!--//div_smallnav_content_hover End-->
     </div>
     <div class="clear"></div>
-    <!--//main_right End-->
-
     <div style="margin: 30px;"></div>
-    <!--//right_kj End-->
-
-</div>
-<!--//user_main End-->
 
 @stop

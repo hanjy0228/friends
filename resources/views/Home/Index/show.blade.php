@@ -72,7 +72,6 @@
                         </div>
                     </div>
                 </div>
-                <!--//mood-post-form End-->
                 @foreach($comm as $k => $v)
                     <dl class="weibo_item">
                         <dt>
@@ -89,9 +88,7 @@
                     </dl>
                 @endforeach
                 <div class="clear"></div>
-                <!--//main_right End-->
                 <div style="margin: 30px;"></div>
-                <!--//right_kj End-->
             </div>
         </div>
         <div class="clear"></div>

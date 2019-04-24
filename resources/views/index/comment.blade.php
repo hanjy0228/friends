@@ -1,11 +1,8 @@
 @extends('index.layous.qianindex')
 
 @section('content')
-    <!--//user_main_left End-->
     <div class="main_right">
         <div class="div_smallnav_content_hover">
-
-            <!--//mood-post-form End-->
             @foreach($comm as $k => $v)
             <dl class="weibo_item">
                 <dt>
@@ -27,14 +24,7 @@
                 </dd>
             </dl>
         @endforeach
-
     <div class="clear"></div>
-    <!--//main_right End-->
-
     <div style="margin: 30px;"></div>
-    <!--//right_kj End-->
-
 </div>
-<!--//user_main End-->
-
 @stop

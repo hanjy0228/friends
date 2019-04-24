@@ -1,8 +1,6 @@
 @extends('index.layous.qianindex')
 
 @section('content')
-    <!--//user_main_left End-->
-
     <div class="main_right">
         <div class="oe_tab_nv">
             <ul>
@@ -13,9 +11,6 @@
             </ul>
         </div>
         <div class="div_smallnav_content_hover basicdata">
-
-
-            <!--基本资料 Begin-->
             <form name="myform" id="myform" action="/index/self_content_upd" method="post">
                 <table cellpadding="0" cellspacing="0" border="0" width="98%" class="user-table table-margin lh35">
                     <tbody>
@@ -48,21 +43,10 @@
                     </tr>
                     </tbody></table>
             </form>
-            <!--基本资料 End-->
-
         </div>
         <div class="clear"></div>
-        <!--//div_smallnav_content_hover End-->
     </div>
     <div class="clear"></div>
-    <!--//main_right End-->
-
     <div style="margin: 30px;"></div>
-    <!--//right_kj End-->
-
 </div>
-<!--//user_main End-->
-
-
-<!--//user_footer End-->
 @stop
