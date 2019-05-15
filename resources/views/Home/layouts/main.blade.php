@@ -10,7 +10,7 @@
     <link href="/index/css/oe_varpop.css" rel="stylesheet">
     <link rel="stylesheet" href="../../../../css/jdlogin.css" />
     <link rel="stylesheet" href="../../../../css/style.css" />
-    <link href="../../../../css/oe_varpop.css" rel="stylesheet" /
+    <link href="../../../../css/oe_varpop.css" rel="stylesheet" />
     <link href="../../../../css/sharebar.css" rel="stylesheet" type="text/css" />
     <script type='text/javascript'>
         var _ROOT_PATH = "";
