@@ -339,7 +339,6 @@
             $('#'+t).focus();
             return false;
         }
-        $('#register_form').submit();
         return true;
     }
 

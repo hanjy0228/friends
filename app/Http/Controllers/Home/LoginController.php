@@ -67,12 +67,6 @@ class LoginController extends Controller{
 //        print_r($message_flag);die();
         return view('home.index.index',['list'=>$data,'zan_flag'=>$zan_flag,'arr'=>$data1,'message_flag'=>$message_flag,'comment_flag'=>$comment_flag]);
     }
-    //详情内容
-    public function Case_list(Request $request){
-        $id=$request->input('id');
-        $data=DB::table('story')->where('id',$id)->first();
-        return view('home.case.case_list',['list'=>$data]);
-    }
     //搜索
     public function Sou(Request $request){
         if($request->isMethod('post')){

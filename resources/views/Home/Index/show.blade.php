@@ -7,8 +7,7 @@
             <div class="bd">
                 <img class="img" src="../../../uploads/{{$data->img}}" />
             </div>
-        </div>
-        <div class="home_info">
+        <div class="home_info" style="position: absolute;height: 418px;top: 220px;left: 400px;">
             <h3>
                 {{$data->nichen}}
             </h3>
@@ -72,12 +71,13 @@
                         </div>
                     </div>
                 </div>
+                <!--//mood-post-form End-->
                 @foreach($comm as $k => $v)
                     <dl class="weibo_item">
                         <dt>
                             <span><img src="/uploads/{{$v->img}}"></span>
                         <h3>
-                            <a href="http://www.wzqsys.com/usercp.php?c=weibo&amp;uid=162049">{{$v->nichen}}</a>&nbsp;&nbsp;
+                            <a>{{$v->nichen}}</a>&nbsp;&nbsp;
                             &nbsp;
                         </h3>
                         <p class="time">{{$v->time}}</p>
@@ -88,10 +88,15 @@
                     </dl>
                 @endforeach
                 <div class="clear"></div>
+                <!--//main_right End-->
                 <div style="margin: 30px;"></div>
+                <!--//right_kj End-->
             </div>
         </div>
         <div class="clear"></div>
     </div>
+
 </div>
+</div>
+
 @stop

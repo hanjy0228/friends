@@ -1,6 +1,8 @@
 @extends('index.layous.qianindex')
 
 @section('content')
+
+    <!--//user_main_left End-->
     <div class="main_right">
         <div class="oe_tab_nv">
             <ul>
@@ -156,6 +158,7 @@
                                 <option value="设计/创意">设计/创意</option>
                                 <option value="文学/传媒/影视">文学/传媒/影视</option>
                                 <option value="餐饮/旅游">餐饮/旅游</option>
+
                                 <option value="医疗/护理">医疗/护理</option>
                                 <option value="保健/美容">保健/美容</option>
                                 <option value="生物/制药/医疗器械">生物/制药/医疗器械</option>
@@ -191,10 +194,18 @@
                     </tbody></table>
             </form>
             <!--基本资料 End-->
+
         </div>
         <div class="clear"></div>
+        <!--//div_smallnav_content_hover End-->
     </div>
     <div class="clear"></div>
+    <!--//main_right End-->
+
     <div style="margin: 30px;"></div>
+    <!--//right_kj End-->
+
 </div>
+<!--//user_main End-->
+
 @stop
