@@ -57,8 +57,8 @@
             		  婚况
 		          </span>
                     <select name="maraystate" id="s_marry" f="but_change_sel" data-tid="s_marry_text">
-                        <option value="1">未婚</option>
                         <option value="2">离异</option>
+                        <option value="1">未婚</option>
                     </select>
                 </div>
                 <div class="selectarea">
