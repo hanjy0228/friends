@@ -178,6 +178,7 @@ class SelfController extends Controller
         $res = DB::select("select * from riji where riji.u_id = $user->id ");
         return view('index.self_diary', ['data' => $res,'datas'=>$user]);
     }
+    //查看日记详情
     public function simi(Request $request)
     {
         if(empty($request->session()->get('user')))
@@ -311,10 +312,6 @@ class SelfController extends Controller
             $flag=false;
             echo "<script>alert('不能为空,请重新输入');location.href='/index/upd_pass'</script>";
         }
-//        if (strlen($newpass)<6 || strlen($newpass)>16) {
-//            $flag=false;
-//            echo "<script>alert('密码长度为6-16，,请重新输入');location.href='/index/upd_pass'</script>";
-//        }
         if ($newpass != $confirmpass) {
             $flag=false;
             echo "<script>alert('两次密码不同');location.href='/index/upd_pass'</script>";
