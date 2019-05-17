@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)http://www.wzqsys.com/usercp.php?c=profile -->
+
 <html class="no-js" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="author" content="OEdev">
     <meta name="generator" content="OElove">
