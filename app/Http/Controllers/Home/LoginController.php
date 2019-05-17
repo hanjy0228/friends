@@ -121,7 +121,7 @@ class LoginController extends Controller{
             if ($res) {
                 return "发表成功";
             } else {
-                return "發表失敗";
+                return "发表失败";
             }
         }
     }

@@ -56,6 +56,7 @@ class SelfController extends Controller
         } else {
             echo "<script>alert('出错了');location.href='/index/self'</script>";
         }
+        return view('index.upd_user');
     }
     //个性签名
     public function self_content(Request $request)
@@ -86,6 +87,7 @@ class SelfController extends Controller
         } else {
             echo "<script>alert('出错了');location.href='/index/self_content'</script>";
         }
+        return view('index.self_content_upd');
     }
     //s收到的私信
     public function self_message(Request $request)
@@ -211,6 +213,7 @@ class SelfController extends Controller
         } else {
             echo "<script>alert('删除失败');location.href='/index/self_send_diary'</script>";
         }
+        return view('index.self_diary_del');
     }
     public function self_send_diary_sub(Request $request)
     {
@@ -238,6 +241,7 @@ class SelfController extends Controller
 
             echo "<script>alert('标题已经存在');location.href='/index/self_send_diary'</script>";
         }
+        return view('index.self_send_diary_sub');
     }
     //修改状态
     public function upd_state(Request $request)
@@ -268,7 +272,7 @@ class SelfController extends Controller
         if ($res) {
             echo "<script>alert('修改成功');location.href='/index/upd_state'</script>";
         }
-
+        return view('index.upd_state_sub', ['data' => $res]);
     }
     //修改密码
     public function upd_pass(Request $request)
@@ -322,24 +326,7 @@ class SelfController extends Controller
         } else {
             echo "<script>alert('出错了');location.href='/index/upd_pass'</script>";
         }
-    }
-    //进入活动页面
-    public function active_index(Request $request)
-    {
-        if(empty($request->session()->get('user')))
-        {
-            echo "<script>location.href='/login'</script>";
-        }
-        //session
-        $value = $request->session()->get('user');
-        $user = DB::table('user')->where('user',$value)->first();
-
-        $res =  DB::table('my_success')->where('m_id',$user->id)->get()->first();
-        if(!empty($res))
-        {
-            $res1 = DB::table('user')->where('id',$res->u_id)->get()->first();
-        }
-        return view('index.active_index',['data'=>$res1]);
+        return view('index.upd_pass_sub', ['data' => $res]);
     }
     public function comment(Request $request)
     {
